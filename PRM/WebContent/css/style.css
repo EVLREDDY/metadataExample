@@ -1,0 +1,266 @@
+.spacerTop {
+	margin-top: 2rem;
+}
+
+.sap-tablet .sapMDialog, .sap-desktop .sapMDialog {
+    min-width: 18rem;
+}
+
+.sapMMessageDialog {
+    width: 18rem;
+}
+
+.timeItems {
+padding: 10px;
+border:1px solid #b2b2b2;	
+}
+.textNoWrap{
+	white-space: normal !important;
+}
+
+
+.sapMOHNumberStateSuccess1 {
+    color: #007833 !important;
+}
+
+.sapMOHNumberStateWarning1 {
+    color: #ff9900 !important;
+}
+.sapMObjStatusMarker1 {
+    color: #00008B !important;
+}
+
+.sapMOHNumberStateError1 {
+    color: #800000 !important;
+}
+
+.IGreenColor {
+	 background-color:green !important;
+}
+.DRedColor {
+	 background-color:red !important;
+}
+.bdcolor {
+	 background-color:orange !important;
+}
+.UOranColor {
+	 background-color:orange !important;
+}
+.bdmcolor1 {
+	  background-color:green !important;
+}
+.bdmcolor2 {
+	  background-color:red !important;
+}
+.bdmcolor3 {
+	  background-color:#ff9900;
+}
+.UOranColor1 {
+	 background-color:orange !important;
+}
+
+/*Message Strip Classes*/
+.sapMMsgStrip {
+    border: 1px solid;
+    border-radius: 0.1875rem;
+    box-sizing: border-box;
+    font-size: 0.875rem;
+    font-weight: bold;
+    padding: 0.4375rem 1rem;
+    position: fixed !important;
+    right: 30px;
+    top: 20px;
+    opacity: 0.7;
+    z-index: 15;
+    width: 300px;
+}
+
+.lineColor
+{
+	color: red;
+}
+
+.lists{
+    list-style: none !important;
+    padding:0 !important;
+    margin:0 !important;
+}
+
+.lists li { 
+    padding-left: 1em !important; 
+    text-indent: -.7em !important;
+}
+
+.lists .green:before {
+    content: "• " !important;
+    /* content: "* " !important; */
+    color: green !important;
+    font-size:30px !important; /* or whatever color you prefer */
+}
+
+.lists .yellow:before {
+    content: "• " !important;
+    /* content: "* " !important; */
+    color: orange !important; /* or whatever color you prefer */
+    font-size:30px !important; /* or whatever color you prefer */
+}
+
+
+.lists .red:before {
+    content: "• " !important;
+    /* content: "* " !important; */
+    color: red !important; /* or whatever color you prefer */
+    font-size:30px !important; /* or whatever color you prefer */
+}
+
+
+.sapMMsgStrip[data-sap-ui-ms-closable='true']>.sapMMsgStripMessage {
+    margin-right: 1rem
+}
+
+html[data-sap-ui-animation='on'] .sapMMsgStrip {
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s
+}
+
+html[data-sap-ui-animation='on'] .sapMMsgStripCloseButton {
+    -webkit-transition: opacity 0.1s;
+    transition: opacity 0.1s
+}
+
+.sapMMsgStripClosing {
+    opacity: 0
+}
+
+.sapMMsgStripIcon {
+    position: absolute;
+    top: 0.375rem;
+    left: 0;
+    width: 2.5rem;
+    font-size: 1rem;
+    text-align: center
+}
+
+.sapMMsgStripIcon ~ .sapMMsgStripMessage {
+    margin-left: 1.5rem
+}
+
+.sapMMsgStripMessage {
+    max-height: 10rem;
+    overflow: auto
+}
+
+.sapMMsgStripMessage>.sapMText,.sapMMsgStripMessage>.sapMLnk {
+    display: inline;
+    line-height: 1.5;
+}
+
+.sapMMsgStripMessage>.sapMLnk {
+    margin-left: 0.25rem
+}
+
+.sapMMsgStripCloseButton {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    top: 0.1875rem;
+    right: 0.1875rem;
+    box-sizing: border-box;
+    font-family: 'SAP-icons';
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0.6
+}
+
+.sapMMsgStripCloseButton:hover {
+    opacity: 1
+}
+
+.sapMMsgStripCloseButton:focus {
+    outline: 0
+}
+
+.sapMMsgStripCloseButton::-moz-focus-inner {
+    border: 0
+}
+
+.sapMMsgStripCloseButton::before {
+    content: "";
+    position: absolute;
+    top: -25%;
+    bottom: -25%;
+    left: -25%;
+    right: -25%
+}
+
+.sapMMsgStripCloseButton::after {
+    content: '\e03e';
+    position: absolute
+}
+
+.sapMMsgStripInformation {
+    background-color: #e6f2f9;/*#ffffff;*/
+    border-color: #007cc0;/*#cfcfcf;*/
+    color: #000000
+}
+
+.sapMMsgStripInformation .sapMMsgStripIcon {
+    color: #007cc0
+}
+
+.sapMMsgStripSuccess {
+    background-color: #e0f1e7;
+    border-color: #008a3b;
+    color: #000000
+}
+
+.sapMMsgStripSuccess .sapMMsgStripIcon {
+    color: #007833
+}
+
+.sapMMsgStripWarning {
+    background-color: #fffcb5;
+    border-color: #f0ab00;
+    color: #000000
+}
+
+.sapMMsgStripWarning .sapMMsgStripIcon {
+    color: #d14900
+}
+
+.sapMMsgStripError {
+    background-color: #fbdfdf;
+    border-color: #e52929;
+    color: #000000
+}
+
+.sapMMsgStripError .sapMMsgStripIcon {
+    color: #cc1919
+}
+
+.sapMMsgStripCloseButton {
+    line-height: 1.25rem
+}
+
+.sapMMsgStripCloseButton:focus::after {
+    border-color: #005483
+}
+
+.sapMMsgStripCloseButton::after {
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    border: 1px dotted transparent
+}
+
+.rowChange>tbody>tr
+{
+	 background-color: #EA3535 !important;
+}
+
+  	  },

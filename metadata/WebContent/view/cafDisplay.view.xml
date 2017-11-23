@@ -1,0 +1,510 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="metadata.view.cafDisplay" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="CAF Display" showNavButton="true"
+		navButtonPress="handleBackPressCAFDisplay">
+		<subHeader>
+			<Toolbar>
+				<Bar>
+					<contentLeft>
+						<Button text="" press="handleBackPressCAFDisplay" visible="false"
+							icon="sap-icon://nav-back" />
+					</contentLeft>
+					<contentMiddle>
+						<FlexBox height="35px" alignItems="Start" justifyContent="Start">
+							<items>
+								<Input id="idCAFNumber" placeholder="Enter CAF Number"
+									maxLength="10" liveChange="cafNumLiveSearch" valueLiveUpdate="true"
+									change="cafNumChange" />
+									<Label text="" visible="false"/>
+									<Input text="" visible="false"/>
+								<Button icon="sap-icon://refresh" visible="false" id="idCafRefresh" text="Refresh" type="Reject" press="onCAFRefresh"/>
+							</items>
+						</FlexBox>
+						<!-- <Input id="idCAFNumber" placeholder="Enter CAF Number" maxLength="10" 
+							liveChange="cafNumLiveSearch" valueLiveUpdate="true" change="cafNumChange" 
+							/> <Button text="button"/> -->
+					</contentMiddle>
+				</Bar>
+
+			</Toolbar>
+		</subHeader>
+		<content>
+			<IconTabBar id="tbIconTabBar" expanded="{device>/isNoPhone}"
+				class="sapUiResponsiveContentPadding">
+				<items>
+
+					<IconTabFilter id="tbCommision" text="CAF Details"
+						tooltip="Commision" key="cafDetails">
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="2" emptySpanM="2" columnsL="2"
+							columnsM="2" class="sapUiSizeCompact">
+
+
+							<core:Title text="Company Head Quater Details" />
+
+							<Label text="Company HQ ID" />
+							<Input id="idHQId" value="{JSONCafDisplay>/PartnerNoHq}"
+								enabled="false" />
+
+							<Label text="Company HQ Name" />
+							<Input id="idHQName" value="{JSONCafDisplay>/BpDescriptionHq}"
+								enabled="false" />
+
+							<Label text="Company Registration No." />
+							<Input id="idCINNumber" enabled="false" value="{JSONCafDisplay>/CinHq}" />
+
+
+							<Label text="House/Flat no" />
+							<Input id="idHQHouse" value="{JSONCafDisplay>/HouseNumberHq}"
+								enabled="false" />
+
+							<Label text="Building Number/Name" />
+							<Input id="idHQBuildName" value="{JSONCafDisplay>/BuildingNameHq}"
+								enabled="false" />
+
+							<Label text="Floor In Building" />
+							<Input id="IdHQFloorBldg" enabled="false"
+								value="{JSONCafDisplay>/FloorNumberHq}" />
+
+							<Label text="Wing" />
+							<Input id="IdHQWing" enabled="false" value="{JSONCafDisplay>/WingHq}" />
+
+							<Label text="Society Name" />
+							<Input id="idHQSocietyName" value="{JSONCafDisplay>/SocietyNameHq}"
+								enabled="false" />
+
+							<Label text="Area /Locality" />
+							<Input id="idHQArea" enabled="false" value="{JSONCafDisplay>/LocalityHq}" />
+
+							<Label text="Street" />
+							<Input id="idHQStreet" enabled="false" value="{JSONCafDisplay>/StreetHq}" />
+
+							<Label text="LandMark" />
+							<Input id="idHQLandmark" enabled="false"
+								value="{JSONCafDisplay>/LandmarkHq}" />
+
+							<Label text="City Postal Code" />
+							<Input id="idHQCitypc" maxLength="6"
+								value="{JSONCafDisplay>/PincodeHq}" enabled="false" />
+
+							<Label text="City" />
+							<!-- <Input id="idHQCity" enabled="false" value="{JSONCafDisplay>/CityHq}"/> -->
+
+							<Input id="idCityDisplayHq" enabled="false"
+								value="{JSONCafDisplay>/HqCity}" />
+
+
+							<Label text="District" />
+							<Input id="idHQDistrict" enabled="false"
+								value="{JSONCafDisplay>/DistrictHq}" />
+
+							<Label text="State" />
+							<ComboBox id="cbCLstateDisplayHq" tooltip="Enter State"
+								enabled="false" selectedKey="{JSONCafDisplay>/HqState}"
+								items="{path: '/RegionF4HelpSet',
+                 sorter: { path: 'Region' }}">
+								<core:Item key="{Region}" text="{Description}" />
+							</ComboBox>
+
+							<Label text="City" visible="false" />
+							<ComboBox id="idHQCity" tooltip="Enter City" visible="false"
+								type="Text" enabled="false" selectedKey="{JSONCafDisplay>/CityHq}"
+								items="{path: '/MaR4gCityF4Set',
+                 sorter: { path: 'CityCode' }}">
+								<core:Item key="{CityCode}" text="{CityName}" />
+							</ComboBox>
+							<Label text="State" visible="false" />
+							<ComboBox id="idHQRegion" tooltip="Enter State" visible="false"
+								type="Text" enabled="false" selectedKey="{JSONCafDisplay>/StateHq}"
+								items="{path: '/MaR4gStateF4Set',
+                 sorter: { path: 'R4gstatecode' }}">
+								<core:Item key="{R4gstatecode}" text="{R4gstatename}" />
+							</ComboBox>
+
+							<Label text="Jio Center" />
+							<ComboBox id="idHqJioCenter" tooltip="Enter Jio Center"
+								type="Text" enabled="false" selectedKey="{JSONCafDisplay>/JiocenterIdHq}"
+								items="{path: '/MaGetJioCentersSet', sorter: { path: 'JioCenterCode' }}">
+								<core:Item key="{JioCenterCode}" text="{JioCenterName}" />
+							</ComboBox>
+
+							<Label text="Circle" />
+							<ComboBox id="idCLCircleHq" tooltip="Enter Circle"
+								enabled="false" type="Text" selectedKey="{JSONCafDisplay>/CircleIdHq}"
+								items="{path: '/MaCircleIdF4Set',
+                 sorter: { path: 'CircleId' }}">
+								<core:Item key="{CircleId}" text="{CircleName}" />
+							</ComboBox>
+
+							<Label text="Country Key" />
+							<!-- <Input id="idHQCountryKey" enabled="false" value="{JSONCafDisplay>/CountryHq}"/> -->
+							<ComboBox id="idHQCountryKey" tooltip="Enter Country"
+								type="Text" enabled="false" selectedKey="{JSONCafDisplay>/CountryHq}"
+								items="{path: '/CountryF4helpSet',
+                 sorter: { path: 'Country' }}">
+								<core:Item key="{Country}" text="{Description}" />
+							</ComboBox>
+
+							<Label text="Wallet Balance" />
+							<Input id="idWalletCAFDisp" enabled="false" value="999"
+								visible="false" />
+
+							<core:Title text="Company Location Details" />
+
+							<Label text="Order Created" />
+							<Input id="idOrderCreated" enabled="false" />
+
+							<Label text="CF Number" />
+							<Input id="idPONumber" enabled="false" />
+
+							<Label text="Connection Exhausted" />
+							<Input id="idCounter" enabled="false" />
+
+							<Label text="Total No. Of Connection" />
+							<Input id="idTotConn" enabled="false" />
+
+							<Label text="Product Type" />
+							<Input id="idProdType" enabled="false" visible="false" />
+
+							<Label text="Offer Id" />
+							<!-- <Input id="idPlanId" enabled="false" /> -->
+							<MultiComboBox selectionChange="handleSelectionChange"
+								id="idPlanId" selectionFinish="handleSelectionFinish" width="500px"
+								items="{offers>/}">
+								<core:Item key="{offers>ProductId}" text="{offers>ShortText}" />
+							</MultiComboBox>
+
+							<Label text="Active" />
+							<Input id="idActive" enabled="false" />
+
+							<Label text="Valid From" />
+							<!-- <Input id="idValidFrom" enabled="false" /> -->
+							<DatePicker id="idValidFrom" enabled="false"
+								placeholder="" displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-ddTHH:mm:ss" />
+
+							<Label text="Valid To" />
+							<!-- <Input id="idValidTo" enabled="false" /> -->
+
+							<DatePicker id="idValidTo" enabled="false"
+								placeholder="" displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-ddTHH:mm:ss" />
+
+							<Label text="Company Location Id" />
+							<Input id="idLocationId" enabled="false"
+								value="{JSONCafDisplay>/PartnerNoLc}" />
+
+							<Label text="Company Location Name" />
+							<Input id="idLocationName" enabled="false"
+								value="{JSONCafDisplay>/BpDescriptionLc}" />
+
+							<Label text="Email Id" />
+							<Input id="idLocEmailId" enabled="false"
+								value="{JSONCafDisplay>/EmailAddressBd}" />
+
+							<Label text="Mobile Number" />
+							<Input id="idLocMobileNumber" enabled="false"
+								value="{JSONCafDisplay>/MobileNoBd}" />
+
+							<Label text="Landline Number" />
+							<Input id="idLocLandlineNumber" value="{JSONCafDisplay>/LandlineNoLc}"
+								enabled="false" />
+
+
+							<Label text="House/Flat no" />
+							<Input id="idLocHouse" value="{JSONCafDisplay>/HouseNumberLc}"
+								enabled="false" />
+
+							<Label text="Building Number/Name" />
+							<Input id="idLocBuildName" value="{JSONCafDisplay>/BuildingNameLc}"
+								enabled="false" />
+
+							<Label text="Floor In Building" />
+							<Input id="IdLocFloorBldg" enabled="false"
+								value="{JSONCafDisplay>/FloorNumberLc}" />
+
+							<Label text="Wing" />
+							<Input id="IdLocWing" enabled="false" value="{JSONCafDisplay>/WingLc}" />
+
+							<Label text="Society Name" />
+							<Input id="idLocSocietyName" value="{JSONCafDisplay>/SocietyNameLc}"
+								enabled="false" />
+
+							<Label text="Area /Locality" />
+							<Input id="idLocArea" enabled="false"
+								value="{JSONCafDisplay>/LocalityLc}" />
+
+							<Label text="Street" />
+							<Input id="idLocStreet" enabled="false"
+								value="{JSONCafDisplay>/StreetLc}" />
+
+							<Label text="LandMark" />
+							<Input id="idLocLandmark" enabled="false"
+								value="{JSONCafDisplay>/LandmarkLc}" />
+
+							<Label text="City Postal Code" />
+							<Input id="idLocCitypc" maxLength="6"
+								value="{JSONCafDisplay>/PincodeLc}" enabled="false" />
+
+							<Label text="City" />
+							<Input id="idCityDisplayLc" enabled="false"
+								value="{JSONCafDisplay>/LcCity}" />
+							<Label text="District" />
+							<Input id="idLocDistrict" enabled="false"
+								value="{JSONCafDisplay>/DistrictLc}" />
+
+							<Label text="State" />
+							<ComboBox id="cbCLstateDisplayLc" tooltip="Enter State"
+								enabled="false" type="Text" selectedKey="{JSONCafDisplay>/LcState}"
+								items="{path: '/RegionF4HelpSet',
+                sorter: { path: 'Region' }}">
+								<core:Item key="{Region}" text="{Description}" />
+							</ComboBox>
+
+							<Label text="Jio Center" />
+							<ComboBox id="idLocJioCenter" tooltip="Enter Jio Center"
+								type="Text" enabled="false" selectedKey="{JSONCafDisplay>/JiocenterIdLc}"
+								items="{path: '/MaGetJioCentersSet',
+                 sorter: { path: 'JioCenterCode' }}">
+								<core:Item key="{JioCenterCode}" text="{JioCenterName}" />
+							</ComboBox>
+
+							<Label text="Circle" />
+							<ComboBox id="idCLCircleLc" tooltip="Enter Circle"
+								enabled="false" type="Text" selectedKey="{JSONCafDisplay>/CircleIdLc}"
+								items="{path: '/MaCircleIdF4Set',
+                 sorter: { path: 'CircleId' }}">
+								<core:Item key="{CircleId}" text="{CircleName}" />
+							</ComboBox>
+
+							<Label text="Country Key" />
+							<ComboBox id="idLocCountryKey" tooltip="Enter Country"
+								type="Text" enabled="false" selectedKey="{JSONCafDisplay>/CountryLc}"
+								items="{path: '/CountryF4helpSet',
+                 sorter: { path: 'Country' }}">
+								<core:Item key="{Country}" text="{Description}" />
+							</ComboBox>
+							<Label text="Billing Location" />
+							<Input id="idBillingLoca" enabled="false"
+								value="{JSONCafDisplay>/PartnerNoLc}" />
+							<Label text="Invoice Location Id" required="true" />
+							<Select id="idInvoiceoffId" tooltip="Enter R4G State"
+								visible="true" items="{path: 'invoiceloc>/'}">
+								<core:Item key="{invoiceloc>LocPartner}" text="{invoiceloc>LocName}" />
+							</Select>
+							<Label text="Summary Location Id" required="true" />
+
+							<Select id="cbSummLocId" tooltip="Enter R4G State"
+								visible="true" items="{path: 'invoiceloc>/'}">
+								<core:Item key="{invoiceloc>LocPartner}" text="{invoiceloc>LocName}" />
+							</Select>
+						</f:SimpleForm>
+
+					</IconTabFilter>
+
+					<IconTabFilter id="tbdownload" text="File Uploads"
+						key="fileUpload">
+						<!-- <f:SimpleForm id="idSimpleFormMain" minWidth="1024" maxContainerCols="2" 
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="3" 
+							emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="1" > <Label text="Download 
+							Sample UOL" /> <Button id="btnDownloaduol" text="Download" press="onDlUol" 
+							width="50%" /> <Label text="NOC" required="true" id="idNocL" /> <u:FileUploader 
+							id="idNoc" name="nocLUpload" width="50%" visible="false" useMultipart="false" 
+							sendXHR="true" buttonText="Upload" tooltip="Upload your file to the local 
+							server" uploadComplete="handleUploadComplete" change="_upldForm" typeMissmatch="handleTypeMissmatch" 
+							placeholder="Upload .JPG/.JPEG File" editable="false" sameFilenameAllowed="true" 
+							class="sapUiSizeCompact" /> <Label text="Customer Application Form" required="true" 
+							id="idCafformL"/> <u:FileUploader id="idCafform" name="CafUpload" width="50%" 
+							visible="false" useMultipart="false" sendXHR="true" buttonText="Upload" tooltip="Upload 
+							your file to the local server" uploadComplete="handleUploadComplete" change="_upldForm" 
+							typeMissmatch="handleTypeMissmatch" placeholder="Upload .PDF/.JPG/.JPEG File" 
+							editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" /> <Label 
+							text="Commercial Form " required="true" id="idCommericialformL"/> <u:FileUploader 
+							id="idCommericialform" name="CfUpload" width="50%" visible="false" useMultipart="false" 
+							sendXHR="true" buttonText="Upload" tooltip="Upload your file to the local 
+							server" uploadComplete="handleUploadComplete" change="_upldForm" typeMissmatch="handleTypeMissmatch" 
+							placeholder="Upload .PDF/.JPG/.JPEG File" editable="false" sameFilenameAllowed="true" 
+							class="sapUiSizeCompact" /> <Label text="Physical Verification" id="idPhysVerifL" 
+							/> <u:FileUploader id="idPhysVerif" name="PhysicalVerificationUpload" width="50%" 
+							visible="false" useMultipart="false" sendXHR="true" buttonText="Upload" tooltip="Upload 
+							your file to the local server" uploadComplete="handleUploadComplete" change="_upldForm" 
+							typeMissmatch="handleTypeMissmatch" placeholder="Upload .PDF/.JPG/.JPEG File" 
+							editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" /> <Label 
+							text="Purchase Order" id="idPoL" /> <u:FileUploader id="idPo" name="POUpload" 
+							width="50%" visible="false" useMultipart="false" sendXHR="true" buttonText="Upload" 
+							tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" 
+							change="_upldForm" typeMissmatch="handleTypeMissmatch" placeholder="Upload 
+							.PDF/.JPG/.JPEG File" editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" 
+							/> </f:SimpleForm> -->
+
+						<Panel id="CafPanel">
+							<VBox>
+								<Label text="Download 
+							Sample UOL" />
+								<Button id="btnDownloaduol" text="Download" press="onPressDowload"
+									width="10%" />
+								<Label text="NOC" required="true" id="idNocL" visible="false" />
+								<u:FileUploader id="idNoc" name="nocLUpload"
+									width="50%" visible="false" useMultipart="false" sendXHR="true"
+									buttonText="Upload" tooltip="Upload your file to the local 
+							server"
+									uploadComplete="handleUploadComplete" change="uploadFiles"
+									typeMissmatch="handleTypeMissmatch" placeholder="Upload .JPG/.JPEG File"
+									editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" />
+								<Label text="Customer Application Form" required="true"
+									visible="false" id="idCafformL" />
+								<u:FileUploader id="idCafform" name="CafUpload"
+									width="50%" visible="false" useMultipart="false" sendXHR="true"
+									buttonText="Upload" tooltip="Upload 
+							your file to the local server"
+									uploadComplete="handleUploadComplete" change="uploadFiles"
+									typeMissmatch="handleTypeMissmatch" placeholder="Upload .PDF/.JPG/.JPEG File"
+									editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" />
+								<Label text="Commercial Form " required="true" visible="false"
+									id="idCommericialformL" />
+								<u:FileUploader id="idCommericialform" name="CfUpload"
+									width="50%" visible="false" useMultipart="false" sendXHR="true"
+									buttonText="Upload" tooltip="Upload your file to the local 
+							server"
+									uploadComplete="handleUploadComplete" change="uploadFiles"
+									typeMissmatch="handleTypeMissmatch" placeholder="Upload .PDF/.JPG/.JPEG File"
+									editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" />
+								<Label text="Physical Verification" id="idPhysVerifL"
+									visible="false" />
+								<u:FileUploader id="idPhysVerif" name="PhysicalVerificationUpload"
+									width="50%" visible="false" useMultipart="false" sendXHR="true"
+									buttonText="Upload" tooltip="Upload 
+							your file to the local server"
+									uploadComplete="handleUploadComplete" change="uploadFiles"
+									typeMissmatch="handleTypeMissmatch" placeholder="Upload .PDF/.JPG/.JPEG File"
+									editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" />
+								<Label text="Purchase Order" id="idPoL" visible="false" />
+								<u:FileUploader id="idPo" name="POUpload" width="50%"
+									visible="false" useMultipart="false" sendXHR="true" buttonText="Upload"
+									tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete"
+									change="uploadFiles" typeMissmatch="handleTypeMissmatch"
+									placeholder="Upload .PDF/.JPG/.JPEG File" editable="false"
+									sameFilenameAllowed="true" class="sapUiSizeCompact" />
+							</VBox>
+
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+								labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+								columnsM="2" id="HQDetailsform" visible="true">
+
+								<Panel expandable="false" id="uolPanelId" visible="false"
+									expanded="true" headerText="User Order List (UOL)">
+									<FlexBox height="50px" alignItems="Center"
+										justifyContent="End">
+										<items>
+											<Label visible="false" id="idUserOrderListL" />
+											<u:FileUploader id="idUserOrderList" name="MnpLUpload"
+												width="50%" visible="true" useMultipart="false" sendXHR="true"
+												buttonText="Upload" tooltip="Upload your  file to the local server"
+												uploadComplete="handleUploadComplete" change="uploadFiles"
+												typeMissmatch="handleTypeMissmatch" placeholder="Upload .csv File"
+												editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" />
+										</items>
+									</FlexBox>
+									<ScrollContainer height="180px" width="75%"
+										vertical="true" focusable="true">
+
+										<Table id="uolTable" items="{/}" noDataText="No Files">
+											<columns>
+												<Column minScreenWidth="Tablet" hAlign="Center"
+													demandPopin="true" width="18%">
+													<Text text=""></Text>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem>
+													<cells>
+														<Text text="{file}" />
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</ScrollContainer>
+								</Panel>
+
+								<Panel expandable="false" expanded="true" id="mnpPanelId"
+									visible="false" headerText="Mobile Number Portability (MNP)">
+									<FlexBox height="50px" alignItems="Center"
+										justifyContent="End">
+										<items>
+											<Label visible="false" id="idMNPLetterL" />
+											<u:FileUploader id="idMNPLetter" name="MNPUpload"
+												width="50%" visible="true" useMultipart="false" sendXHR="true"
+												buttonText="Upload" tooltip="Upload 
+								your file to the local server"
+												uploadComplete="handleUploadComplete" change="uploadFiles"
+												typeMissmatch="handleTypeMissmatch" placeholder="Upload .PDF/.JPG/.JPEG File"
+												editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" />
+										</items>
+									</FlexBox>
+									<ScrollContainer height="180px" width="75%"
+										vertical="true" focusable="true">
+
+										<Table noDataText="No Files" id="mnpTable" items="{/}">
+											<columns>
+												<Column minScreenWidth="Tablet" hAlign="Center"
+													demandPopin="true" width="18%">
+													<Text text=""></Text>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem>
+													<cells>
+														<Text text="{file}" />
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</ScrollContainer>
+								</Panel>
+							</f:SimpleForm>
+						</Panel>
+
+						<!-- <f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" 
+							layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" 
+							emptySpanM="0" columnsL="2" columnsM="2" id="HQDetailsform" visible="true"> 
+							<Panel expandable="false" id="uolPanelId" visible="false" expanded="true" 
+							headerText="User Order List (UOL)"> <FlexBox height="50px" alignItems="Center" 
+							justifyContent="End"> <items> <Label visible="false" id="idUserOrderListL" 
+							/> <u:FileUploader id="idUserOrderList" name="MnpLUpload" width="50%" visible="true" 
+							useMultipart="false" sendXHR="true" buttonText="Upload" tooltip="Upload your 
+							file to the local server" uploadComplete="handleUploadComplete" change="_upldForm" 
+							typeMissmatch="handleTypeMissmatch" placeholder="Upload .csv File" editable="false" 
+							sameFilenameAllowed="true" class="sapUiSizeCompact" /> </items> </FlexBox> 
+							<ScrollContainer height="180px" width="75%" vertical="true" focusable="true"> 
+							<Table> <columns> <Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true" 
+							width="18%"> <Text text=""></Text> </Column> </columns> <items> <ColumnListItem> 
+							<cells> <ObjectNumber number="fldksdj" /> </cells> </ColumnListItem> </items> 
+							</Table> </ScrollContainer> </Panel> <Panel expandable="false" expanded="true" 
+							id="mnpPanelId" visible="false" headerText="Mobile Number Portability (MNP)"> 
+							<FlexBox height="50px" alignItems="Center" justifyContent="End"> <items> 
+							<Label visible="false" id="idMNPLetterL" /> <u:FileUploader id="idMNPLetter" 
+							name="MNPUpload" width="50%" visible="true" useMultipart="false" sendXHR="true" 
+							buttonText="Upload" tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" 
+							change="_upldForm" typeMissmatch="handleTypeMissmatch" placeholder="Upload 
+							.PDF/.JPG/.JPEG File" editable="false" sameFilenameAllowed="true" class="sapUiSizeCompact" 
+							/> </items> </FlexBox> <ScrollContainer height="180px" width="75%" vertical="true" 
+							focusable="true"> <Table> <columns> <Column minScreenWidth="Tablet" hAlign="Center" 
+							demandPopin="true" width="18%"> <Text text=""></Text> </Column> </columns> 
+							<items> <ColumnListItem> <cells> <ObjectNumber number="fldksdj" /> </cells> 
+							</ColumnListItem> </items> </Table> </ScrollContainer> </Panel> </f:SimpleForm> -->
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button id="btnSaveCAF" type="Accept" text="Create" press="onSaveCaf"
+					enabled="false" class="sapUiSizeCompact">
+				</Button>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

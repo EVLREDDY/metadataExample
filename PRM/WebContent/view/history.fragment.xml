@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <Dialog title=""  contentWidth="70%"  showHeader="false"
+		xmlns:f="sap.ui.layout.form" class="sapUiSizeCompact">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text id="histroyFrgmntActTle" />
+				</contentMiddle>
+				<contentRight>
+					<Button   icon="sap-icon://sys-cancel" press="onhstryCancel"></Button>
+				</contentRight>
+			</Bar>
+		</subHeader>
+    <Table id="historyTable">
+    	<columns>
+    		<Column>
+    			<Text text="Approver Name"/>
+    		</Column>
+    		<Column visible="false">
+    			<Text text="Approver" />
+    		</Column>
+    		<Column>
+    			<Text text="Approval Level"/>
+    		</Column>
+    		<Column>
+    			<Text text="Completion Date"/>
+    		</Column>
+    		<Column visible="false">
+    			<Text text="Activity Id"/>
+    		</Column>
+    		<Column>
+    			<Text text="Job Function"/>
+    		</Column>
+    		<Column>
+    			<Text text="Action"/>
+    		</Column>
+    	</columns>
+    </Table>
+    <beginButton>
+     <Button text="OK" press="onOK" />
+    </beginButton>
+  </Dialog>
+</core:FragmentDefinition>

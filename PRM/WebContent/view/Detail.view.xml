@@ -1,0 +1,1239 @@
+<mvc:View controllerName="com.ril.PRMS.view.Detail" xmlns="sap.m"
+	xmlns:ui="sap.ca.ui" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form">
+
+	<Page id="detailPage" navButtonPress="onNavBack" title="{i18n>detailTitle}" enableScrolling="true"
+		showNavButton="{device>/isPhone}">
+		<headerContent>
+		<Button id="legendsBtnId" tooltip="Legends" icon="sap-icon://sys-help" press="onMsgPress"/>
+			<ToggleButton id="fullscreenButton" icon="sap-icon://full-screen"
+				enabled="true" press="maxmin" />
+		</headerContent>
+		<content>
+			<!-- Start Object Header -->
+			<ObjectHeader id="detailHeader" visible="true">
+				<statuses>
+					<ObjectStatus id="att_id" title="Creation Date" text="" />
+					<ObjectStatus id="status_id" title="Approval Status"
+						text="" />
+				</statuses>
+				<attributes>
+					<ObjectAttribute id="objattrapprvlLevl" title="Approval Level" />
+					<ObjectAttribute id="transactNo" title="Transaction No"
+						visible="false" />
+					<ObjectAttribute id="objAttrdscrpton" title="Description"
+						visible="false" />
+					<ObjectAttribute id="scenario" title="Scenario" />
+				</attributes>
+			</ObjectHeader>
+			<Toolbar visible="true" id="depstChckTlbar">
+				<ToolbarSpacer />
+				<VBox>
+					<HBox>
+						<Label id="depositCheckLabel" text="Deposit Check" textDirection="RTL" visible="false"/>
+					</HBox>
+				</VBox>
+				<VBox class="sapUiSmallMargin">
+					<items>
+						<HBox>
+							<Switch state="false" id="switchDepst" customTextOn="Yes" customTextOff="No" visible="false">
+								<layoutData>
+									<FlexItemData growFactor="1" />
+								</layoutData>
+							</Switch>
+						</HBox>
+					</items>
+				</VBox>
+			<CheckBox id="idSettlement" visible="false" text="Settlement" select="onSettlementCheckbox" />
+				<CheckBox id="idDevHandover" visible="false" text="Devices Handover" select="onDeviceHandoverCheckbox" />
+			</Toolbar>
+			<!-- Start Object Header -->
+			<IconTabBar id="idIconTabBar" expanded="{device>/isNoPhone}"
+				class="sapUiResponsiveContentPadding" select="onTabSelect">
+				<items>
+					<!-- Start Task Tab -->
+					<IconTabFilter icon="sap-icon://task" text="Task Info"
+						key="taskInfo" id="taskInfoTab" visible="true">
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+							columnsM="2">
+							<core:Title text="Task Info" />
+							<Label text="Employee Job Function" textDirection="RTL" />
+							<Text id="inptJobfun" />
+							<Label text="Employee Responsible" textDirection="RTL" />
+							<Text id="inptRespons" />
+							<core:Title />
+						</f:SimpleForm>
+					</IconTabFilter>
+					<!-- End Task Tab -->
+					<!-- Start Profile Tab -->
+					<IconTabFilter icon="sap-icon://supplier" text="Profile"
+						key="profile" id="profileTab">
+						<!-- Start Profile Tab for HQ Details -->
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							id="frmProfileTab2" editable="true" layout="ResponsiveGridLayout"
+							labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+							columnsL="2" columnsM="2" visible="false">
+							<core:Title text="Profile" />
+							<Label text="Company Name" textDirection="LTR" />
+							<Input id="inptCompNamePftb2" editable="false" maxLength="40" enabled="false"
+								/>
+							<Label text="Alias" textDirection="LTR" />
+							<Input id="inptAliasNamePftb2" enabled="false" maxLength="40"
+								liveChange="onLiveChangeCompAlias" change="onAliasName"/>
+							<Label text="Relation Type" textDirection="LTR" />
+							<ComboBox id="cmbRelationTypePftb2" enabled="false"
+								selectionChange="onChangeRelationType" />
+							<Label text="Relation Sub Type" textDirection="LTR" />
+							<ComboBox id="cmbRelationSubTypePftb2" enabled="false"
+								selectionChange="onChangeRelationSubType" />
+							<core:Title />
+							<Text text="" />
+							<Label text="Location Type" textDirection="LTR" />
+							<ComboBox id="cmbLocationTypePftb2" editable="false" enabled="false"
+								 />
+							<Label text="Location Sub Type" textDirection="LTR" />
+							<ComboBox id="cmbLocationSubTypePftb2" editable="false" enabled="false"
+								selectionChange="onLocationSubType" visible="false" />
+							<Label text="Segment" visible="false" textDirection="LTR" />
+							<ComboBox id="cmbSegmentPftb2" editable="false"
+								selectionChange="onSegment" visible="false" />
+							<Label text="Retailer category" textDirection="LTR"
+								visible="false" />
+							<ComboBox id="cmbSegmentValuePftb2" enabled="false"
+								visible="false" />
+							<Label text="Ret Business Type" textDirection="LTR"
+								visible="false" />
+							<ComboBox id="cmbSegmentTypePftb2" enabled="false"
+								visible="false" />
+							<Label text="Bill To Party" textDirection="LTR" />
+							<CheckBox id="chkBillToPartyPftb2" select="onchkBillParty"/>
+							<Label text="Ship To Party" textDirection="LTR" />
+							<CheckBox id="chkShipToPartyPftb2" select="onchkshipParty"/>
+						</f:SimpleForm>
+						<!-- End Profile Tab for HQ Details -->
+						<!-- Start Profile Tab for Dealer Details -->
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							id="frmProfileTab1" editable="true" layout="ResponsiveGridLayout"
+							labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+							columnsL="2" columnsM="2" visible="false">
+							<core:Title text="Profile" />
+							<Label text="Ownership Type" textDirection="RTL" />
+							<ComboBox id="cmbOwnrTyp" enabled="false"
+								selectionChange="onChngeOwnrType" />
+							<Label text="Company Name" textDirection="RTL" />
+							<Input id="inptCompName" enabled="false" maxLength="40"
+								liveChange="onLiveChangeCompAliasValue" change="changeCompany"/>
+							<Label text="Alias" textDirection="RTL" />
+							<Input id="inptAliasName" enabled="false" maxLength="40"
+								liveChange="onLiveChangeCompAlias" change="onAliasName"/>
+							<Label text="Relation Type" textDirection="RTL" />
+							<ComboBox id="cmbRelationType" enabled="false"
+								selectionChange="onChangeRelationType" />
+							<Label text="Relation Sub Type" textDirection="RTL" />
+							<ComboBox id="cmbRelationSubType" enabled="false"
+								selectionChange="onChangeRelationSubType" />
+							<core:Title />
+							<Text text="" />
+							<Label text="Location Type" textDirection="RTL" />
+							<ComboBox id="cmbLocationType" enabled="false"
+								selectionChange="onLocationType" />
+							<Label text="Location Sub Type" textDirection="RTL" />
+							<ComboBox id="cmbLocationSubType" enabled="false"
+								selectionChange="onLocationSubType" visible="true" />
+							<Label text="Date of Inc" textDirection="RTL" />
+							<DatePicker id="dtePickrDateofIncrption" enabled="false" 
+								valueFormat="yyyy-MM-dd" displayFormat="dd MMM YYYY" change="chngeDofInc"/>
+							<Label text="Segment" visible="false" textDirection="RTL" />
+							<ComboBox id="cmbSegment" enabled="false"
+								selectionChange="onSegment" visible="false" />
+							<Label text="Retailer category" textDirection="RTL" />
+							<ComboBox id="cmbSegmentValue" enabled="false" selectionChange="onChangeRetBusType"/>
+							<Label text="Ret Business Type" textDirection="RTL" />
+							<ComboBox id="cmbSegmenttype" enabled="false" selectionChange="onChangeRetCatgry"/>
+						</f:SimpleForm>
+						<!--End Profile Tab for Dealer Details -->
+						
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2" id="HQDetailsform" visible="true">
+							
+							<Panel expandable="false" expanded="true" headerText="Product Group">
+							<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+							
+							<Table mode="MultiSelect" items="{jsonData>/results}"  select="prodfinish" id="tabidProgroup" >
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign="Left" demandPopin="true"
+										width="18%">
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ObjectNumber
+											number="{jsonData>AttrValue}" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							</ScrollContainer>
+							</Panel>	
+							
+							<Panel expandable="false" expanded="true" headerText="Assigned Business Group">	
+							<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+                            <Table  items="{jsonAssbgroup>/results}" id="TabidAssbgroup" select="AssBusgroupFinish"
+								 mode="MultiSelect" >
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="18%">
+									</Column>
+								</columns>
+								<items>
+								<ColumnListItem>
+								<cells>
+								<ObjectNumber
+									number="{jsonAssbgroup>AttrValue}"
+									 />
+								</cells>
+								</ColumnListItem>
+								</items>
+							</Table>
+								</ScrollContainer>
+								</Panel>			
+						</f:SimpleForm>
+						
+						
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2"  visible="false">
+							<Label text="Product Group" textDirection="RTL" visible="false"
+								id="LabelProdgroupHQdet" />
+							<MultiComboBox id="multicbxPrdctGroup"
+								 selectionChange="prodfinish" visible="false"
+								width="18em" tooltip="Enter productgroup" />
+							<Text width="35%" id="procount" visible="false"/>
+							<Label text="Assigned Business Group" textDirection="RTL" visible="false"
+								id="LabelAssignedBusinessGroupHQdet" />
+							<MultiComboBox id="mltcombxAssgndBussGroup" visible="false"
+								 selectionChange="AssBusgroupFinish"
+								width="18em" tooltip="Enter productgroup" />
+							<Text width="35%" id="assgroup" visible="false"/>
+						</f:SimpleForm>
+						
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2">
+							<core:Title text="Sales Hirerachy" />
+							<Label text="R4G State" textDirection="RTL" />
+							<ComboBox id="cmbR4GState" items="{jsonr4Gstate>/results}"
+								enabled="false" selectionChange="onR4gStateChange">
+								<core:Item key="{jsonr4Gstate>LovCode}" text="{jsonr4Gstate>LovName}" />
+							</ComboBox>
+							<Label text="Delivery Center" textDirection="RTL" />
+							<ComboBox id="cmbDelvryCntr" items="{jsonDlvryCenter>/results}"
+								enabled="false" selectionChange="onDeliveryCntr">
+								<core:Item key="{jsonDlvryCenter>LovCode}" text="{jsonDlvryCenter>LovName}" />
+							</ComboBox>
+							<Label text="Circle" textDirection="RTL" />
+							<ComboBox id="cmbCircle" items="{jsonCircle>/results}"
+								enabled="false" selectionChange="onCircleChange">
+								<core:Item key="{jsonCircle>LovCode}" text="{jsonCircle>LovName}" />
+							</ComboBox>
+							<Label text="R4G Area" textDirection="RTL" />
+							<ComboBox id="cmbR4GArea" items="{jsonArea>/results}"
+								enabled="false" selectionChange="onR4GAreaChange">
+								<core:Item key="{jsonArea>LovCode}" text="{jsonArea>LovName}" />
+							</ComboBox>
+							<Label text="Jio Center" textDirection="RTL" />
+							<ComboBox id="cmbJiocenter" items="{jsonJioCenter>/results}"
+								enabled="false" selectionChange="onJIOCenterChange">
+								<core:Item key="{jsonJioCenter>LovCode}" text="{jsonJioCenter>LovName}" />
+							</ComboBox>
+							<core:Title text="Parent Partner" />
+							<Label text="Device" textDirection="RTL" />
+							<Input id="inptParentPrtnrDvc" enabled="false"
+								change="onChangeParentPartnerDvc" />
+							<Label text="Services" textDirection="RTL" />
+							<Input id="inptParentPrtnrSrvc" enabled="false"
+								change="onChangeParentPartnerSrvc" />
+							<Label text="CAF Pickup" textDirection="RTL" />
+							<ComboBox id="inptCafPckup" enabled="false" selectionChange="onChangeCAF"
+								items="{aliasCAFModel>/results}">
+								<core:Item key="{aliasCAFModel>AttrCode}" text="{aliasCAFModel>AttrValue}" />
+							</ComboBox>
+							<Label text="FOS Agent" textDirection="RTL" />
+							<ComboBox id="inptfosAgnt" enabled="false"  selectionChange="onFOSAgent" items="{aliasFOSModel>/results}">
+								<core:Item key="{aliasFOSModel>AttrCode}" text="{aliasFOSModel>AttrValue}"/></ComboBox>
+						</f:SimpleForm>
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2">
+							<core:Title />
+						</f:SimpleForm>
+					</IconTabFilter>
+					<!--End Profile Tab -->
+					<!--Start Address Tab -->
+					<IconTabFilter icon="sap-icon://learning-assistant"
+						text="Address" key="cnctDtls" id="addressTab">
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2">
+							<core:Title text="Address" />
+							<Label text="C/O Name" textDirection="RTL" />
+							<Input id="inptcoName" enabled="false" visible="false" change=""/>
+							<Label text="Address Line1" textDirection="RTL" />
+							<Input id="inptHouseno" enabled="false" maxLength="40"
+								liveChange="onLiveChangeAddress" change="onChangeHouseNo" valueLiveUpdate="true"/>
+							<Label text="Building No" textDirection="RTL" visible="false" />
+							<Input id="inptBuldngno" editable="false" visible="false" />
+							<Label text="Society" textDirection="RTL" />
+							<Input id="inptSocnname" editable="false" visible="false" />
+							<Label text="Address Line2" textDirection="RTL" />
+							<Input id="inptStreet" enabled="false" maxLength="40"
+								liveChange="onLiveChangeAddress" change="onChangeAdd2" valueLiveUpdate="true"/>
+							<Label text="Area/Locality" textDirection="RTL" />
+							<ComboBox id="inptAreaLoc" enabled="false"
+								items="{jsonLocality>/results}" selectionChange="onChageArea">
+								<core:Item key="{jsonLocality>LovCode}" text="{jsonLocality>LovName}" />
+							</ComboBox>
+							<Label text="Address Line3" textDirection="RTL" />
+							<Input id="inptlandmark" enabled="false" maxLength="40"
+								liveChange="onLiveChangeAddress" change="onChangeAddLne3" valueLiveUpdate="true">
+							</Input>
+							<Label text="Sub Locality" textDirection="RTL" />
+							<Input id="inptSubLclty" enabled="false" maxLength="40" change="onSubLocaty"/>
+							<Label text="Postal Code/City" textDirection="RTL" />
+							<Input id="inptPostalCde" enabled="false" liveChange="onChangePin"
+								maxLength="6" change="onChangePinpost" valueLiveUpdate="true"/>
+							<ComboBox id="cmbCity" items="{jsonCity1>/}"
+								enabled="false" selectionChange="onCityChange">
+								<core:Item key="{jsonCity1>LovCode}" text="{jsonCity1>LovName}" />
+								<layoutData>
+									<l:GridData span="L4 M4 S4" />
+								</layoutData>
+							</ComboBox>
+							<Label text="City ID" textDirection="RTL" />
+							<Input id="inptAddrCityId" enabled="false" visible="false" />
+							<Label text="District" textDirection="RTL" />
+							<ComboBox id="cmbDistrct" items="{jsonDstrct>/results}"
+								enabled="false" selectionChange="onChangeDistrict">
+								<core:Item key="{jsonDstrct>LovCode}" text="{jsonDstrct>LovName}" />
+							</ComboBox>
+							<Label text="State" textDirection="RTL" />
+							<ComboBox id="cmbState" enabled="false" selectionChange="onChangeState" />
+							<Label text="Country" textDirection="RTL" />
+							<ComboBox id="cmbCountry" enabled="false"
+								selectionChange="onChangeCountry" />
+							<core:Title text="Company contact details" />
+							<Label text="Mobile Number" textDirection="RTL" />
+							<l:HorizontalLayout>
+								<Input id="inpStaticCode2" type="Text" value="+91" textAlign="Right"
+									enabled="false" width="85px" change="onChangeMobNo"/>
+								<Input id="inpComptMobleNo" enabled="false" maxLength="10"
+									liveChange="onLiveChangeMno" change="onChangeMobNo_add" width="195px" valueLiveUpdate="true"/>
+							</l:HorizontalLayout>
+						
+						<Label text="Fixed line number" textDirection="RTL" />
+                                          <HBox>
+                                          <Input id="inpStaticStdCode" type="Text" value="+91" textAlign="Right"
+                                                      enabled="false" width="45px" />
+                                          <Input id="inpSTDCode"  maxLength="8" type="Number" textAlign="Right"
+                                                      enabled="false" width="85px"  liveChange="onChangeFixedLinNum" valueLiveUpdate="true" change="onChangeFaxLneNo"/>
+                                          <Input id="inpFaxedLneNo" enabled="false" change="onChangeFaxLneNo"
+                                                maxLength="9" liveChange="onChangeFixedLinNum" valueLiveUpdate="true"  width="150px"/>
+                                          </HBox>
+						
+							<!-- <Label text="Fixed line number" textDirection="RTL" />
+							<l:HorizontalLayout>
+							<Input id="inpSTDCode"  maxLength="8" textAlign="Right"
+									enabled="false" width="85px"  liveChange="onChangeFixedLinNum" valueLiveUpdate="true" change="onChangeFaxLneNo"/>
+							<Input id="inpFaxedLneNo" enabled="false" change="onChangeFaxLneNo"
+								maxLength="9" liveChange="onChangeFixedLinNum" valueLiveUpdate="true"  width="195px"/>
+							</l:HorizontalLayout> -->
+							<Label text="Email ID" textDirection="RTL" />
+							<Input id="inptCompEmail" enabled="false" change="onChangeEmail"
+								maxLength="100" />
+							<Label text="Web Site" id="lblWebsite" textDirection="RTL" />
+							<Input id="inptCompWebsite" enabled="false" change="onChangeWebsite" />
+						</f:SimpleForm>
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2">
+							<core:Title text="Geography Information" />
+							<Label text="Latitude" textDirection="RTL" />
+							<Input id="inptLatitude" editable="false" change="onChangeLatitude" />
+							<Label text="Longitude" textDirection="RTL" />
+							<Input id="inptLongitude" editable="false" change="onChangelogtude" />
+							<core:Title text="Work timings" />
+							<Label text="Start Day/Time" textDirection="RTL" />
+							<HBox>
+								<ComboBox items="{weekModel>/Week_Offs}" id="cmbStrtWkngDay" selectionChange="onSelectionStart"
+									enabled="false">
+									<core:Item key="{weekModel>key}" text="{weekModel>Day}" />
+								</ComboBox>
+								<DateTimeInput type="Time" id="dpStratTime"
+									editabled="false" class="sapUiSizeCompact" valueFormat="HH:mm:ss"
+									displayFormat="HH:mm:ss" placeholder="00:00:00" width="9em"
+									tooltip="Enter Scheme Valid From Time" change="onChangeDateTime"/>
+							</HBox>
+							<Label text="End Day/Time" textDirection="RTL" />
+							<HBox>
+								<ComboBox items="{weekModel>/Week_Offs}" id="cmbEndWkngDay"
+									editabled="false" selectionChange="onSelectionEnd">
+									<core:Item key="{weekModel>key}" text="{weekModel>Day}" />
+								</ComboBox>
+								<DateTimeInput type="Time" id="dpEndTime"
+									editabled="false" class="sapUiSizeCompact" valueFormat="HH:mm:ss"
+									displayFormat="HH:mm:ss" placeholder="00:00:00" width="9em"
+									tooltip="Enter Scheme Valid From Time" change="onChangeEndTime"/>
+							</HBox>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<!--End Address Tab -->
+					<!--Start Identifiers Tab -->
+					<IconTabFilter icon="sap-icon://notes" text="Identifiers"
+						key="proofDtls" id="identTab">
+						<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+							<Table growing="true" growingThreshold="12"
+								growingScrollToLoad="true" id="taxTable" items="{/}" delete="onDeleteTaxTab">
+								<headerToolbar>
+									<Toolbar>
+										<Title text="Dealer Identifiers" level="H2" />
+										<ToolbarSpacer />
+										<Button type="Emphasized" visible="false" icon="sap-icon://add"
+											press="newTaxRow" enabled="true" id="btnTaxTabAdd" />
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="18%">
+										<Text text="Proof Identifier" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="28%">
+										<Text text="Proof Type" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="28%">
+										<Text text="Doc No" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="18%">
+										<Text text="Date of Issue" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="18%">
+										<Text text="Date of Expiry" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" visible="false">
+										<Text text="Place of Issue" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" visible="false">
+										<Text text="Issuing Authority" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ComboBox items="{prfcmb1Mod>/}" selectedKey="{ZzproofIdent}" valueState="{parts:[{path:'ZzproofIdent_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+												enabled="false">
+												<core:Item key="{prfcmb1Mod>pfIdeVal}" text="{prfcmb1Mod>pfIdeVal}" />
+											</ComboBox>
+											<ComboBox items="{prfcmb2Mod>/pfIdChild}" enabled="false" valueState="{parts:[{path:'ZzidType_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"> 
+												<core:Item key="{prfcmb2Mod>AttrCode}" text="{prfcmb2Mod>AttrValue}" />
+											</ComboBox>
+											<Input value="{ZzidNumber}" valueState="{parts:[{path:'ZzidNumber_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}" enabled="false" liveChange="onChangeDealerIdent"/>
+											<DatePicker dateValue="{ZzdateOfIssue}" valueState="{parts:[{path:'ZzdateOfIssue_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+												valueFormat="dd MMM YYYY" displayFormat="dd MMM YYYY"
+												enabled="false" change="onChangValidateDates"/>
+											<DatePicker dateValue="{ZzdateOfExpiry}" valueState="{parts:[{path:'ZzdateOfExpiry_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+												valueFormat="dd MMM YYYY" displayFormat="dd MMM YYYY"
+												enabled="false" change="onChangValidateDates"/>
+											<Input value="{ZzplaceOfIssue}" enabled="false"  valueState="{parts:[{path:'ZzplaceOfIssue_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+											<Input value="{ZzissueAuth}" enabled="false" valueState="{parts:[{path:'ZzissueAuth_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+						<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+							<Table growing="true" growingThreshold="12"
+								growingScrollToLoad="true" id="proofTable" items="{/}"
+								delete="onDeletePrfTab">
+								<headerToolbar>
+									<Toolbar>
+										<Title text="POA" level="H2" />
+										<ToolbarSpacer />
+										<Button type="Emphasized" visible="false" icon="sap-icon://add"
+											press="newPrfRow" enabled="true" id="btnProofTab" />
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" width="18%">
+										<Text text="Proof Identifier" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" width="28%">
+										<Text text="Proof Type" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" width="28%">
+										<Text text="Doc No" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" width="18%">
+										<Text text="Date of Issue" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" width="18%">
+										<Text text="Date of Expiry" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" visible="false">
+										<Text text="Place of Issue" />
+									</Column>
+									<Column minScreenWidth="Tablet" hAlign="Center"
+										demandPopin="true" visible="false">
+										<Text text="Issuing Authority" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ComboBox items="{prfcmdprfMod>/}" selectedKey="{ZzproofIdent}" valueState="{parts:[{path:'ZzproofIdent_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+												enabled="false">
+												<core:Item key="{prfcmdprfMod>pfIdeVal}" text="{prfcmdprfMod>pfIdeVal}" />
+											</ComboBox>
+											<ComboBox items="{prfcmbprfsMod>/pfIdChild}"  valueState="{parts:[{path:'ZzidType_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+												enabled="false">
+												<core:Item key="{prfcmbprfsMod>AttrCode}" text="{prfcmbprfsMod>AttrValue}" />
+											</ComboBox>
+											<Input value="{ZzidNumber}" valueState="{parts:[{path:'ZzidNumber_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}" enabled="false" liveChange="onChangePOA"/>
+											<DatePicker dateValue="{ZzdateOfIssue}" enabled="false"
+												valueFormat="dd MMM YYYY" displayFormat="dd MMM YYYY" 
+												change="onChangValidateDates" valueState="{parts:[{path:'ZzdateOfIssue_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+											<DatePicker dateValue="{ZzdateOfExpiry}" enabled="false" valueState="{parts:[{path:'ZzdateOfExpiry_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+												valueFormat="dd MMM YYYY" displayFormat="dd MMM YYYY" 
+												change="onChangValidateDates"/>
+											<Input value="{ZzplaceOfIssue}" enabled="false" valueState="{parts:[{path:'ZzplaceOfIssue_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+											<Input value="{ZzissueAuth}" enabled="false" valueState="{parts:[{path:'ZzissueAuth_X'},{path:'ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</IconTabFilter>
+					<!--End Identifiers Tab -->
+					<!--Start Atrributes Tab -->
+					<IconTabFilter icon="sap-icon://documents" text="Atrributes"
+						key="attributes" id="attributesTab">
+						<!--Start Atrributes Tab for HQ Details -->
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="4" emptySpanM="4" columnsL="2"
+							id="AttributeSimpleform" columnsM="2" visible="false">
+							<f:content>
+								<Label text="Location Insured" textDirection="RTL" />
+								<ComboBox id="cmbLoctonInsurdnew" enabled="false"
+									width="12em" selectionChange="onChangeLocationInsure"/>
+								<Label text="Location Ownership" textDirection="RTL" />
+								<ComboBox id="AgentlocComboOwnership" enabled="false"
+									width="12em" selectionChange="onChangeAgentlocCombo"/>
+							</f:content>
+						</f:SimpleForm>
+						<!--End Atrributes Tab for HQ Details -->
+						<f:SimpleForm id="AttrHQSimpleForm">
+							<f:content>
+								<core:Fragment fragmentName="com.ril.PRMS.view.AttributeSubsections"
+									type="XML" />
+							</f:content>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<!--End Atrributes Tab -->
+					<!--Start Ref.Dealer Tab -->
+					<IconTabFilter icon="sap-icon://address-book" text="Ref.Dealer"
+						key="refDtls" id="refDealer">
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+							columnsM="2">
+							<core:Title text="Basic Info" />
+							<Label text="ID" textDirection="RTL" />
+							<Input value="{LocModel>/Zzsequence}" enabled="false" id="inpLocRefID" valueState="{parts:[{path:'LocModel>/Zzsequence_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="First Name" textDirection="RTL" />
+							<Input value="{LocModel>/Zzfname}" enabled="false" id="inpLocRefFname"
+								maxLength="40" liveChange="onLiveChangeName"  valueState="{parts:[{path:'LocModel>/Zzfname_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Middle Name" textDirection="RTL" />
+							<Input value="{LocModel>/ZzmiddileName}" enabled="false"
+								id="inpLocRefMname" maxLength="40" liveChange="onLiveChangeName"  valueState="{parts:[{path:'LocModel>/ZzmiddileName_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Last Name" textDirection="RTL" />
+							<Input value="{LocModel>/ZzlastName}" enabled="false"
+								id="inpLocRefLname" maxLength="40" liveChange="onLiveChangeName" valueState="{parts:[{path:'LocModel>/ZzlastName_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Organization Name" textDirection="RTL" />
+							<Input value="{LocModel>/ZzcompanyName}" enabled="false"
+								liveChange="onLiveChangeOrganization" maxLength="40" id="inpLocRefOrg" valueState="{parts:[{path:'LocModel>/ZzcompanyName_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Designation" textDirection="RTL" />
+							<Input value="{LocModel>/Zzdesignation}" enabled="false"
+								maxLength="60" liveChange="onLiveChangeDesignation" id="inpLocRefDesg" valueState="{parts:[{path:'LocModel>/Zzdesignation_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<core:Title text="Address" />
+							<Label text="Address Line1" textDirection="RTL" />
+							<Input value="{LocModel>/ZzhouseNo}" enabled="false"
+								maxLength="40" id="inpLocRefAdd1" liveChange="onLiveChangeAddress" valueState="{parts:[{path:'LocModel>/ZzhouseNo_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Area/Locality" textDirection="RTL" />
+							<ComboBox value="{LocModel>/Zzlocation}" enabled="false"
+								id="inpLocRefAL" items="{jsonLocality>/results}" valueState="{parts:[{path:'LocModel>/Zzlocation_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+								<core:Item key="{jsonLocality>LovCode}" text="{jsonLocality>LovName}" />
+							</ComboBox>
+							<Label text="Sub Locality" textDirection="RTL" />
+							<Input value="{LocModel>/Zzsublocality}" enabled="false"
+								id="inpLocRefSubLoc" maxLength="40" valueState="{parts:[{path:'LocModel>/Zzsublocality_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Address Line2" textDirection="RTL" />
+							<Input value="{LocModel>/Zzstreet}" enabled="false"
+								maxLength="40" id="inpLocRefAdd2" liveChange="onLiveChangeAddress"  valueState="{parts:[{path:'LocModel>/Zzstreet_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Address Line3" textDirection="RTL" />
+							<Input value="{LocModel>/Zzlandmark}" enabled="false"
+								maxLength="40" id="inpLocRefAdd3" liveChange="onLiveChangeAddress"  valueState="{parts:[{path:'LocModel>/Zzlandmark_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Pincode/City" textDirection="RTL" />
+							<Input value="{LocModel>/Zzpin}" enabled="false" id="inpLocRefPin"
+								liveChange="onChangeLocPin" maxLength="6"  valueState="{parts:[{path:'LocModel>/Zzpin_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<ComboBox id="cmbLocCity" items="{jsonCity1>/results}"
+								value="{LocModel>/Zzcity}" enabled="false" selectionChange="onLocCityChange" valueState="{parts:[{path:'LocModel>/Zzcity_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+								<core:Item key="{jsonCity1>LovCode}" text="{jsonCity1>LovName}" />
+								<layoutData>
+									<l:GridData span="L4 M4 S4" />
+								</layoutData>
+							</ComboBox>
+							<Label text="District" textDirection="RTL" />
+							<ComboBox id="cmbDistrict" enabled="false"
+								items="{jsonDstrct>/results}" value="{LocModel>/Zzdistrict}" valueState="{parts:[{path:'LocModel>/Zzdistrict_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+								<core:Item key="{jsonDstrct>LovCode}" text="{jsonDstrct>LovName}" />
+							</ComboBox>
+							<Label text="State" textDirection="RTL" />
+							<ComboBox id="cmbRefState" enabled="false" selectedKey="{LocModel>/Zzstate}"  valueState="{parts:[{path:'LocModel>/Zzstate_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Country" textDirection="RTL" />
+							<ComboBox id="cmbRefCountry" enabled="false" valueState="{parts:[{path:'LocModel>/Zzcountry_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								selectedKey="{LocModel>/Zzcountry}" />
+							<core:Title text="Contact" />
+							<Label text="Contact Number" textDirection="RTL" />
+							<Input enabled="false" value="{LocModel>/ZzmobileNumber}" valueState="{parts:[{path:'LocModel>/ZzmobileNumber_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="17" liveChange="onChangeFixedLinNum" id="inpLocRefMob" />
+							<Label text="Email" textDirection="RTL" />
+							<Input enabled="false" value="{LocModel>/ZzemailId}" id="inpLocRefEmail" valueState="{parts:[{path:'LocModel>/ZzemailId_X'},{path:'LocModel>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="100" change="onChangeEmailRefDealer" />
+						</f:SimpleForm>
+					</IconTabFilter>
+					<!--End Ref.Dealer Tab -->
+					<!--Start Agent Tab -->
+					<IconTabFilter icon="sap-icon://business-card" text="Agent Details"
+						key="agentDtls" id="agentDet">
+						<Toolbar>
+							<Label text="Agents:" id="lblAgents" />
+							<Select id="cbAgents" change="onSelectAgent" />
+							<ToolbarSpacer></ToolbarSpacer>
+						</Toolbar>
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							id="frmAgent" editable="true" layout="ResponsiveGridLayout"
+							labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+							columnsL="2" columnsM="2">
+							<core:Title text="Agent Profile" />
+							<Label text="Salutation" textDirection="RTL" />
+							<ComboBox id="cmbSaluton" enabled="false"
+								selectionChange="onAgent_SalutationChange" />
+							<Label text="First Name" textDirection="RTL" />
+							<Input id="fname" enabled="false" maxLength="40"
+								liveChange="onLiveChangeName" />
+							<Label text="Middle Name" textDirection="RTL" />
+							<Input id="mName" enabled="false" maxLength="40"
+								liveChange="onLiveChangeName" />
+							<Label text="Last Name" textDirection="RTL" />
+							<Input id="lName" enabled="false" maxLength="40"
+								liveChange="onLiveChangeName" />
+							<Label text="Gender" textDirection="RTL" />
+							<ComboBox id="cmbGender" enabled="false" change="onAgentDetails_Change" />
+							<Label text="Date of Birth" textDirection="RTL" />
+							<DatePicker id="datePickrbirthday" enabled="false" displayFormat="dd MMM YYYY"
+								valueFormat="yyyy-MMM-dd" change="onAgentDetails_Change" />
+							<core:Title text=" " />
+							<Text />
+							<Label text="Job Function" textDirection="RTL" />
+							<ComboBox id="cmbJobFnctn" enabled="false"
+								selectionChange="jobfuncSelectChange" />
+							<Label text="Date of Joining" textDirection="RTL" />
+							<!-- <DatePicker id="dpDOJ" enabled="false" valueFormat="dd MMM YYYY"  displayFormat="dd MMM YYYY"
+								change="onAgentDetails_Change" /> -->
+							<DatePicker valueFormat="dd-MMM-YYYY" change="onAgentDetails_Change" displayFormat="dd MMM YYYY"
+							 id="dpDOJ" enabled="false" />
+							<Label text="Qualification" textDirection="RTL" />
+							<ComboBox id="cmbQualification" enabled="false"
+								selectionChange="onAgentDetails_Change" />
+							<Label text="Industry" textDirection="RTL" />
+							<ComboBox id="cmbIndustry" enabled="false"
+								selectionChange="onAgentDetails_Change" />
+							<Label text="Years of experience" textDirection="RTL" />
+							<Input id="inpYoExp" enabled="false" maxLength="2"
+								liveChange="onLiveChangeYrsOfExp" />
+							<Label text="Second Language" textDirection="RTL" />
+							<ComboBox id="cmbSecLanguage" enabled="false"
+								selectionChange="onAgentDetails_Change" />
+							<core:Title text="Contact Information" />
+							<Label text="Mobile no" textDirection="RTL" />
+							<l:HorizontalLayout>
+								<Input id="inpStaticCode4" type="Text" value="+91"
+									enabled="false" width="40px" />
+								<Input id="inptmobileNo" enabled="false" maxLength="10"
+									liveChange="onLiveChangeMno" change="onChangeMobNo" width="240px" />
+							</l:HorizontalLayout>
+							<Label text="Alternate Mobile No" textDirection="RTL" />
+							<l:HorizontalLayout>
+								<Input id="inpStaticCode5" type="Text" value="+91"
+									enabled="false" width="40px" />
+								<Input id="cmbAlterMbno" enabled="false" maxLength="10"
+									liveChange="onLiveChangeMno" change="onChangeMobNo" width="240px" />
+							</l:HorizontalLayout>
+							<Label text="Email" textDirection="RTL" />
+							<Input id="inptEmail" enabled="false"
+								change="onChangeEmailAgentDetContInfo" maxLength="100" />
+							<Label text="Preferred Language" textDirection="RTL" />
+							<ComboBox id="cmbPref_lang" enabled="false" visible="false"
+								selectionChange="onAgentDetails_Change" />
+							<Label text="Communication Preferennce" textDirection="RTL" />
+							<ComboBox id="cmbCom_pref" enabled="false" visible="false"
+								selectionChange="onAgentDetails_Change" />
+							<core:Title text="Owner user identification" />
+							<Label text="Primary Agent" textDirection="RTL" />
+							<CheckBox id="ckBxPriAgent" select="onAgentDetails_Change" />
+							<Label text="PRM ID" textDirection="RTL" />
+							<Input id="inptPRMID" enabled="false" change="onAgentDetails_Change" />
+							<Label text="EXTERNAL ID" textDirection="RTL" />
+							<Input id="inptExtrnlID" enabled="false" change="onAgentDetails_Change" />
+							<Label text="Job description" textDirection="RTL" />
+							<Input id="inptjobDescr" enabled="false" change="onAgentDetails_Change" />
+						
+							<!-- Present Address -->
+							
+							<core:Title text="Present Address" />
+							<Label text="Address Line 1" textDirection="RTL" />
+							<Input enabled="false" value="{agentPresentAdd>/ZzhouseNo}" valueState="{parts:[{path:'agentPresentAdd>/ZzhouseNo_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="40" id="inpAgentPreAdd1" liveChange="onLiveChangeAddress" />
+							<Label text="Area/Locality" textDirection="RTL" />
+							<ComboBox enabled="false" value="{agentPresentAdd>/Zzlocation}" selectionChange="onAgentDetails_Change"
+								id="inpAgentPreArea" valueState="{parts:[{path:'agentPresentAdd>/Zzlocation_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								items="{jsonLocality>/results}">
+								<core:Item key="{jsonLocality>LovCode}" text="{jsonLocality>LovName}"
+									 />
+							</ComboBox>
+							<Label text="Sub Locality" textDirection="RTL" visible="false" />
+							<Input enabled="false" id="inpAgentPreSub" visible="false"
+								maxLength="40" />
+							<Label text="Address Line 2" textDirection="RTL" />
+							<Input enabled="false" value="{agentPresentAdd>/Zzstreet}" valueState="{parts:[{path:'agentPresentAdd>/Zzstreet_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="40" id="inpAgentPreAdd2" liveChange="onLiveChangeAddress" />
+							<Label text="Address Line 3" textDirection="RTL" />
+							<Input enabled="false" value="{agentPresentAdd>/Zzlandmark}" valueState="{parts:[{path:'agentPresentAdd>/Zzlandmark_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="40" id="inpAgentPreAdd3" liveChange="onLiveChangeAddress" />
+							<Label text="Pincode/City" textDirection="RTL" />
+							<Input enabled="false" value="{agentPresentAdd>/Zzpin}"  valueState="{parts:[{path:'agentPresentAdd>/Zzpin_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+							id="inpAgentPrePin" liveChange="onChangePinPresentAdd" maxLength="6" />
+							<ComboBox id="cmbAgentPreCity" items="{jsonCity1>/results}"
+								value="{agentPresentAdd>/Zzcity}" valueState="{parts:[{path:'agentPresentAdd>/Zzcity_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+							enabled="false" selectionChange="onAgentPreCityChange">
+								<core:Item key="{jsonCity1>LovCode}" text="{jsonCity1>LovName}" />
+								<layoutData>
+									<l:GridData span="L4 M4 S4" />
+								</layoutData>
+							</ComboBox>
+							<Label text="District" textDirection="RTL" />
+							<ComboBox enabled="false" id="inpAgentPreDist" valueState="{parts:[{path:'agentPresentAdd>/Zzdistrict_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+							items="{jsonDstrct>/results}" value="{agentPresentAdd>/Zzdistrict}" selectionChange="onAgentDetails_Change">
+								<core:Item key="{jsonDstrct>LovCode}" text="{jsonDstrct>LovName}" />
+							</ComboBox>
+							<Label text="State" textDirection="RTL" />
+							<ComboBox enabled="false" id="cmbAgentPreState"
+								selectionChange="onAgentDetails_Change"  valueState="{parts:[{path:'agentPresentAdd>/Zzstate_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+							<Label text="Country" textDirection="RTL" />
+							<ComboBox enabled="false" id="cmbAgentPreCountry" valueState="{parts:[{path:'agentPresentAdd>/Zzcountry_X'},{path:'agentPresentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								selectedKey="{agentPresentAdd>/Zzcountry}" selectionChange="onAgentDetails_Change" />
+						
+							<!-- Permanent Address -->
+						
+							<core:Title text="Permanent Address" />
+							<Label text="Address Line 1" textDirection="RTL" />
+							<Input enabled="false" value="{agentPermentAdd>/ZzhouseNo}" valueState="{parts:[{path:'agentPermentAdd>/ZzhouseNo_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="40" id="inpAgentPerAdd1" liveChange="onLiveChangeAddress" /> 
+							<Label text="Area/Locality" textDirection="RTL" />
+							<ComboBox enabled="false" value="{agentPermentAdd>/Zzlocation}" valueState="{parts:[{path:'agentPermentAdd>/Zzlocation_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								id="inpAgentPerArea" items="{jsonLocality>/results}"
+								selectionChange="onAgentDetails_Change">
+								<core:Item key="{jsonLocality>LovCode}" text="{jsonLocality>LovName}" />
+							</ComboBox>
+							<Label text="Sub Locality" textDirection="RTL" visible="false" />
+							<Input enabled="false" id="inpAgentPerSub" visible="false"
+								maxLength="40" />
+							<Label text="Address Line 2" textDirection="RTL" />
+							<Input enabled="false" value="{agentPermentAdd>/Zzstreet}" valueState="{parts:[{path:'agentPermentAdd>/Zzstreet_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="40" id="inpAgentPerAdd2" liveChange="onLiveChangeAddress" />
+							<Label text="Address Line 3" textDirection="RTL" />
+							<Input enabled="false" value="{agentPermentAdd>/Zzlandmark}" valueState="{parts:[{path:'agentPermentAdd>/Zzlandmark_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								maxLength="40" id="inpAgentPerAdd3" liveChange="onLiveChangeAddress" />
+							<Label text="Pincode/City" textDirection="RTL" />
+							<Input enabled="false" value="{agentPermentAdd>/Zzpin}" id="inpAgentPerPin"
+								liveChange="onChangePinAgentPer" maxLength="6" />
+							<ComboBox id="cmbAgentPerCity" items="{jsonCity1>/results}" valueState="{parts:[{path:'agentPermentAdd>/Zzpin_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								enabled="false" selectionChange="onAgentPerCityChange" value="{agentPermentAdd>/Zzcity}">
+								<core:Item key="{jsonCity1>LovCode}" text="{jsonCity1>LovName}" />
+								<layoutData>
+									<l:GridData span="L4 M4 S4" />
+								</layoutData>
+							</ComboBox>
+							<Label text="District" textDirection="RTL" />
+							<ComboBox enabled="false" id="inpAgentPerDist" items="{jsonDstrct>/results}" valueState="{parts:[{path:'agentPermentAdd>/Zzdistrict_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								value="{agentPermentAdd>/Zzdistrict}" selectionChange="onAgentDetails_Change">
+								<core:Item key="{jsonDstrct>LovCode}" text="{jsonDstrct>LovName}" />
+							</ComboBox>
+							<Label text="State" textDirection="RTL" />
+							<ComboBox enabled="false" id="cmbAgentPerState" valueState="{parts:[{path:'agentPermentAdd>/Zzstate_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								selectionChange="onAgentDetails_Change" />
+							<Label text="Country" textDirection="RTL" />
+							<ComboBox enabled="false" id="cmbAgentPerCount" valueState="{parts:[{path:'agentPermentAdd>/Zzcountry_X'},{path:'agentPermentAdd>/ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+								selectedKey="{agentPermentAdd>/Zzcountry}" selectionChange="onAgentDetails_Change" />
+						</f:SimpleForm>
+						
+						<!-- Agent Table Proof -->
+						<Panel expandable="false" expanded="true" id="pnlAgent">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title text="Identifiers" />
+									<ToolbarSpacer />
+									<Button icon="sap-icon://add" press="newAgntDtlsPrfRow"
+										id="agentBtAdd" visible="false" />
+								</Toolbar>
+							</headerToolbar>
+							<ScrollContainer height="200px" width="100%"
+								vertical="true" focusable="true">
+								<Table growing="true" growingThreshold="12"
+									delete="onDeleteAgentProofTab" growingScrollToLoad="true"
+									id="agent_Details_proofTable" items="{agentPrftab>/}">
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" width="18%">
+											<Text text="Proof Identifier" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" width="28%">
+											<Text text="Proof Type" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" width="28%">
+											<Text text="Doc No" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" width="18%">
+											<Text text="Date of Issue" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" width="18%">
+											<Text text="Date of Expiry" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" visible="false">
+											<Text text="Place of Issue" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center" visible="false">
+											<Text text="Issuing Authority" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ComboBox items="{agntprfcmdMod>/}"  selectionChange="selcChgeagentcmb"  selectedKey="{agentPrftab>ZzproofIdent}" valueState="{parts:[{path:'agentPrftab>ZzproofIdent_X'},{path:'agentPrftab>ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+													enabled="false"  >
+													<core:Item key="{agntprfcmdMod>pfIdeVal}" text="{agntprfcmdMod>pfIdeVal}" />
+												</ComboBox>
+												<ComboBox items="{prfcmbprfsMod>/pfIdChild}" selectionChange="selcChgeagentcmbAgentIdent" valueState="{parts:[{path:'agentPrftab>ZzidType_X'},{path:'agentPrftab>ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+													enabled="false">
+													<core:Item key="{prfcmbprfsMod>AttrCode}" text="{prfcmbprfsMod>AttrValue}" />
+												</ComboBox>
+												<Input value="{agentPrftab>ZzidNumber}" liveChange="onChangeAgentPOA" enabled="false" valueState="{parts:[{path:'agentPrftab>ZzidNumber_X'},{path:'agentPrftab>ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"/>
+												<DatePicker valueFormat="dd MMM YYYY" change="onChangValidateDates"
+													displayFormat="dd MMM YYYY" dateValue="{agentPrftab>ZzdateOfIssue}" valueState="{parts:[{path:'agentPrftab>ZzdateOfIssue_X'},{path:'agentPrftab>ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+													enabled="false" />
+												<DatePicker valueFormat="dd MMM YYYY" change="onChangValidateDates" valueState="{parts:[{path:'agentPrftab>ZzdateOfExpiry_X'},{path:'agentPrftab>ZzTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}"
+													displayFormat="dd MMM YYYY" dateValue="{agentPrftab>ZzdateOfExpiry}"
+													enabled="false" />
+												<Input value="{agentPrftab>ZzplaceOfIssue}" valueState="{agentPrftab>ZzplaceOfIssue_X_status}"/>
+												<Input value="{agentPrftab>ZzissueAuth}" valueState="{agentPrftab>ZzissueAuth_X_status}"/>
+											</cells> 
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</Panel>
+						<Panel id="PanelAgentDocUpload" visible="false">
+							<!-- File Agent Upload -->
+							<f:SimpleForm id="agentdocsimpleform">
+								<HBox>
+									<Text text="" width="2em" />
+									<Label text="Category:" id="AgentLabelCategory" visible="false" />
+									<ComboBox id="AgentCategoryCombo" tooltip="Select Category"
+										placeholder="Select Category" selectionChange="onChangeAgentCategory"
+										width="10em" visible="false">
+									</ComboBox>
+									<Label text="" width="0.5cm" />
+									<Text text="Doc Name:" visible="false" id="docnameLabel" />
+									<ComboBox id="AgentcomboName" placeholder="Select Document Name"
+										tooltip="Select Document Name" width="10em" visible="false"
+										selectionChange="onAgentDocNameChange">
+									</ComboBox>
+									<Text text="" width="1em" />
+									<u:FileUploader id="AgentFileUpload" name="myFileUpload"
+										change="onBrowseAgent" width="280px" buttonOnly="false"
+										visible="false" tooltip="Upload your file to the local server"
+										uploadComplete="AgentUploadComplete" placeholder="Please Browse File" />
+									<Label text="" width="0.5cm" />
+									<Button id="AgentUploadButton" text="Upload File"
+										visible="false" press="AgentUploadStart" />
+								</HBox>
+							</f:SimpleForm>
+							<l:VerticalLayout class="sapUiSmallMargin">
+								<ScrollContainer height="180px" width="100%"
+									vertical="true" focusable="true">
+									<Table growing="true" growingThreshold="12"
+										growingScrollToLoad="true" id="UploadTable2" items="{jsAgentRetrieve>/results}"
+										width="100%">
+										<columns>
+											<Column minScreenWidth="Tablet" demandPopin="true"
+												width="40%" hAlign="Center">
+												<Text text="Category" />
+											</Column>
+											<Column minScreenWidth="Tablet" demandPopin="true"
+												width="20%" hAlign="Center">
+												<Text text="Doc Name" />
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" visible="false">
+												<Text text="Doc Id" />
+											</Column>
+											<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"
+												visible="true">
+												<Text text="Doc Type" />
+											</Column>
+											<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"
+												visible="true">
+												<Text text="Download" />
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{jsAgentRetrieve>Category}" />
+													<Text text="{jsAgentRetrieve>DocName}" />
+													<Text text="{jsAgentRetrieve>DocId}" />
+													<Text text="{jsAgentRetrieve>DocType}" visible="true" />
+													<core:Icon src="sap-icon://download" color="#276f45"
+														press="onAgentDownload" />
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</l:VerticalLayout>
+						</Panel>
+						<!-- Ref Agent Details -->
+						<Panel expandable="true" id="refPanel" expanded="false" expand="ReferenceAgentPanelExpand" headerText="Reference Agents">
+							<Toolbar>
+								<Label text="Select Agent:" />
+								<Select change="onChangeRef" id="selRefAgent">
+								</Select>
+							</Toolbar>
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								id="frmRefAgent" editable="true" layout="ResponsiveGridLayout"
+								labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+								columnsL="2" columnsM="2">
+								<core:Title text="Basic Info" />
+								<Label text="ID" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzsequence_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzsequence}" id="inpRefSeqId" />
+								<Label text="First Name" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzfname_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzfname}" id="inpAgentRefFname"
+									maxLength="40" liveChange="onLiveChangeName" />
+								<Label text="Middle Name" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/ZzmiddileName_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/ZzmiddileName}" maxLength="40" liveChange="onLiveChangeName" id="inpAgentRefMname" />
+								<Label text="Last Name" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/ZzlastName_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/ZzlastName}"
+									maxLength="40" liveChange="onLiveChangeName" id="inpAgentRefLname" />
+								<Label text="Organization Name" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/ZzcompanyName_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/ZzcompanyName}"
+									maxLength="40" liveChange="onLiveChangeCompValue" id="inpAgentRefCompName" />
+								<Label text="Designation" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzdesignation_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzdesignation}"
+									maxLength="60" liveChange="onLiveChangeDesignation" id="inpAgentRefDesg" />
+								<core:Title text="Address" />
+								<Label text="Address Line 1" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/ZzhouseNo_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/ZzhouseNo}" id="inpAgentRefAdd1"
+									maxLength="40" liveChange="onLiveChangeAddress" />
+								<Label text="Area / Locality" textDirection="RTL" />
+								<ComboBox enabled="false" valueState="{path:'refAgeMod>/Zzlocation_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								selectedValue="{refAgeMod>/Zzlocation}"
+									selectionChange="onAgentDetails_Change" id="inpAgentRefArea"
+									items="{jsonLocality>/results}">
+									<core:Item key="{jsonLocality>LovCode}" text="{jsonLocality>LovName}" />
+								</ComboBox>
+								<Label text="Sub Locality" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzsublocality_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzsublocality}"
+									id="inpAgentRefSubLoc" maxLength="40" />
+								<Label text="Address Line 2" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzstreet_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzstreet}" id="inpAgentRefAdd2"
+									maxLength="40" liveChange="onLiveChangeAddress" />
+								<Label text="Address Line 3" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzlandmark_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzlandmark}"
+									maxLength="40" id="inpAgentRefAdd3" liveChange="onLiveChangeAddress" />
+								<Label text="Pincode/City" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/Zzpin_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/Zzpin}" id="inpAgentRefPin"
+									liveChange="onChangeRefPin" maxLength="6" />
+								<ComboBox id="cmbAgentRefCity" items="{jsonCity1>/results}"
+									enabled="false" selectionChange="onAgentRefCityChange" valueState="{path:'refAgeMod>/Zzcity_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+									value="{refAgeMod>/Zzcity}">
+									<core:Item key="{jsonCity1>LovCode}" text="{jsonCity1>LovName}" />
+									<layoutData>
+										<l:GridData span="L4 M4 S4" />
+									</layoutData>
+								</ComboBox>
+								<Label text="District" textDirection="RTL" />
+								<ComboBox enabled="false" id="inpAgentRefDist" items="{jsonDstrct>/results}"
+									value="{refAgeMod>/Zzdistrict}" valueState="{path:'refAgeMod>/Zzdistrict_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+									selectionChange="onAgentDetails_Change">
+									<core:Item key="{jsonDstrct>LovCode}" text="{jsonDstrct>LovName}" />
+								</ComboBox>
+								<Label text="State" textDirection="RTL" />
+								<ComboBox enabled="false" id="cmbAgentRefState" valueState="{path:'refAgeMod>/Zzstate_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+									selectionChange="onAgentDetails_Change" />
+								<Label text="Country" textDirection="RTL" />
+								<ComboBox enabled="false" id="cmdAgentRefCountry"
+									selectedKey="{refAgeMod>/Zzcountry}" valueState="{path:'refAgeMod>/Zzcountry_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+									selectionChange="onAgentDetails_Change" />
+								<core:Title text="Contact" />
+								<Label text="Contact Number" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/ZzmobileNumber_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/ZzmobileNumber}"
+									maxLength="17" liveChange="onChangeFixedLinNum" id="inpAgentRefContact" />
+								<Label text="E-mail ID" textDirection="RTL" />
+								<Input enabled="false" valueState="{path:'refAgeMod>/ZzemailId_X',formatter:'com.ril.PRMS.util.Formatter.setHeaderColor'}"
+								value="{refAgeMod>/ZzemailId}" id="inpAgentRefEmail"
+									maxLength="100" change="onChangeEmailAgentDetAgRefCon" />
+							</f:SimpleForm>
+						</Panel>
+					</IconTabFilter>
+					<!--End Agent Tab -->
+					<!--Start Documents Tab -->
+					<IconTabFilter icon="sap-icon://attachment" text="Documents"
+						key="upload" id="iconTabFilterDoc">
+						<HBox>
+							<Text text="" width="2em" />
+							<Text text="Category:" id="docLabelCategory" visible="false" />
+							<ComboBox id="combo1" tooltip="Select Category"
+								selectionChange="onChangeDocumentCategory" placeholder="Select Category"
+								width="10em" visible="false">
+							</ComboBox>
+							<Label text="" width="0.5cm" />
+							<ComboBox id="comboName" tooltip="Select Document Name"
+								width="10em" visible="false" selectionChange="onDocNameChange"
+								placeholder="Select Document Name">
+							</ComboBox>
+							<Text text="" width="1em" />
+							<u:FileUploader id="DocumentFileUpload" name="myFileUpload"
+								change="onBrowse" width="350px" buttonOnly="false"
+								tooltip="Upload your file to the local server" uploadComplete="DocumentUploadComplete"
+								visible="true" placeholder="Please Browse File" />
+							<Label text="" width="0.5cm" />
+							<Button id="iddocumentuploadbtn" text="Upload File"
+								visible="false" press="DocumentUploadStart" />
+						</HBox>
+						<l:VerticalLayout class="sapUiSmallMargin">
+							<ScrollContainer height="220px" width="100%"
+								vertical="true" focusable="true">
+								<Table  id="UploadTable1" items="{jsonDoc>/results}"
+									width="100%">
+									<columns>
+										<Column minScreenWidth="Tablet" hAlign="Center" width="40%">
+											<Text text="Category" visible="true" id="ColCategoryID"
+												textAlign="Left" />
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" width="40%">
+											<Text text="Doc Name" visible="true" id="docKey"
+												textAlign="Left"  />
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" width="40%" visible="false">
+											<Text text="Doc Name" />
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center">
+											<Text text="Doc Id" visible="false" />
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center">
+											<Text text="Doctype" visible="false" id="ColFileName" />
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" width="15%">
+											<Text text="Download" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{jsonDoc>Category}"  />
+												<Text text="{jsonDoc>DocName}" />
+												<Text text="{jsonDoc>DocName}" />
+												<Text text="{jsonDoc>DocId}" visible="false" />
+												<Text text="{jsonDoc>DocType}" visible="false" id="txtFileName" />
+												<core:Icon src="sap-icon://download" press="onDocumentDownload"
+													color="#276f45" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</l:VerticalLayout>
+					</IconTabFilter>
+					<!--End Documents Tab -->
+					<IconTabSeparator />
+					<!--Start Comments Tab -->
+					<IconTabFilter icon="sap-icon://comment" text="Comments" id="CommentsTab"
+						key="Comments">
+						<VBox>
+							<ScrollContainer width="100%" height="165px"
+								vertical="true" id="scrlContComment">
+								<List showSeparators="Inner" id="fedList" width="100%"
+									items="{fedListModel>/}">
+									<FeedListItem showIcon="false" senderActive="false"
+										sender="{fedListModel>comment}" text="{fedListModel>Desc}"
+										timestamp="{fedListModel>time}" info="Comment DateTime:" />
+								</List>
+							</ScrollContainer>
+							<TextArea rows="4" width="100%" placeholder="Type your Comment..."
+								id="txtAreaComment" />
+						</VBox>
+					</IconTabFilter>
+					<!--End Comments Tab -->
+					<!--Start HQ Details Tab -->
+					<IconTabFilter icon="sap-icon://map" id="tabLocation"
+						text="HQ Details" key="location" visible="false">
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							id="frmHqDetail" editable="true" layout="ResponsiveGridLayout"
+							labelSpanL="6" labelSpanM="4" emptySpanL="1" emptySpanM="1"
+							columnsL="2" columnsM="2">
+							<f:content>
+								<core:Title />
+								<Label text="Ownership Type" textDirection="RTL" />
+								<ComboBox id="cmbOwnrTypPftb2" editable="false"
+									selectionChange="onChngeOwnrType" />
+								<Label text="Company Name" textDirection="RTL" />
+								<Input id="compNameLoc" editable="false" />
+								<Label text="Alias" textDirection="RTL" />
+								<Input id="aliasNameLoc" editable="false" />
+								<Label text="Relation Type" textDirection="RTL" />
+								<ComboBox id="relTypLoc" editable="false" />
+								<core:Title />
+								<Label text="Relation Sub Type" textDirection="RTL" />
+								<ComboBox id="relSubTypLoc" editable="false" />
+								<Label text="Date of Incorporation" textDirection="RTL" />
+								<DatePicker id="dtePickrDateofIncrptionPftb2" displayFormat="dd MMM YYYY"
+									editable="false" valueFormat="yyyy-MMM-dd" />
+								<core:Title />
+								<Table growing="true" growingThreshold="12"
+									growingScrollToLoad="true" id="hqProdGrpTab" items="{oPgrpMod>/}"
+									delete="onDeletePrfTab">
+									<columns>
+										<Column minScreenWidth="Tablet" hAlign="Center"
+											demandPopin="true">
+											<Text text="Product Group" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ComboBox items="{hqProductgroup>/}" selectedKey="{oPgrpMod>Prodgroup}"
+													editable="false" textAlign="Center">
+													<core:Item key="{hqProductgroup>AttrCode}" text="{hqProductgroup>AttrValue}" />
+												</ComboBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<core:Title />
+								<Table growing="true" growingThreshold="12"
+									growingScrollToLoad="true" id="hqAssGrpTab" items="{oAgrpMod>/}"
+									delete="onDeletePrfTab">
+									<columns>
+										<Column minScreenWidth="Tablet" hAlign="Center"
+											demandPopin="true">
+											<Text text="Assigned  Group" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ComboBox items="{hqBusgroup>/}" selectedKey="{oAgrpMod>Busgroup}"
+													editable="false" textAlign="Center">
+													<core:Item key="{hqBusgroup>AttrCode}" text="{hqBusgroup>AttrValue}" />
+												</ComboBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</f:content>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<!--End HQ Details Tab -->
+				</items>
+			</IconTabBar>
+		</content>
+		<footer id="detailFooter">
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://history" text="Approval History"
+						press="ApprovalHistoryFrag" />
+					<!-- 	<Button icon="sap-icon://history" text="Mandatory Fields"
+						press="mandatoryFieldsPress" /> -->
+				</contentLeft>
+				<contentRight>
+					<Button text="Approve" type="Accept" press="onApprove" id="btnApprove" />
+					<Button text="Reject" type="Reject" press="onReject" id="btnReject" />
+					<Button text="Send Back" press="onSendBack" id="btnSendBack" visible="false"/>
+					<Button text="Hold" icon="sap-icon://stop" id="idHold"
+						visible="false" press="onHold" />
+					<Button text="Accept" icon="sap-icon://accept" id="idAccept"
+						press="onAccept" visible="false" />
+					<Button icon="sap-icon://edit" id="idEditButon" enabled="true"
+						text="Edit" press="onEditPress" visible="true" />
+					<Button icon="sap-icon://accept" id="idEditSave" text="Save"
+						type="Accept" width="110px" press="onSave" visible="false" />
+					<Button icon="sap-icon://sys-cancel" id="idEditCancel" text="Cancel"
+						type="Reject" width="110px" visible="false" press="onPressCancel" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

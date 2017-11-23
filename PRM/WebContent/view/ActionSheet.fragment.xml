@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+ <ActionSheet id="actionSheet" showCancelButton="true"
+		placement="Top">
+		
+			<buttons>
+			<Button icon="sap-icon://accept" text="Accept" press="onAccept"/>
+			<Button icon="sap-icon://stop" id="idHold" text="Hold" press="onHold"/>
+		</buttons>
+</ActionSheet>
+</core:FragmentDefinition>

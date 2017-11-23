@@ -1,0 +1,491 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+									
+					<IconTabBar id="idIconTabBarAttribute" expanded="{device>/isNoPhone}"
+				class="sapUiResponsiveContentPadding" select="onAttributeTabSelect">
+				<items>
+					<IconTabFilter  text="Infrastructure" tooltip="Infrastructure"
+						key="KeyInfrastructure" id="IdInfrastructure" visible="true">	
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+								labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+								columnsM="2">
+								<core:Title text="Office" titleStyle="H1" />
+								<Label text="Occupancy Type" textDirection="RTL" />
+								<ComboBox id="cmbOccpnyTyp" enabled="false" selectionChange="onChangeOccType"/>
+								<Label text="Office Space" textDirection="RTL" />
+								<ComboBox id="cmbOffcSpce" enabled="false" selectionChange="onChangeOfficeSpace"/>
+								<Label text="Location Insured" textDirection="RTL" />
+								<ComboBox id="cmbLoctonInsurd" enabled="false" selectionChange="onChangeLocationInsure"/>
+								<Label text="Footfall" id="labelFootfall" textDirection="RTL" />
+								<ComboBox id="cmbfotfall" enabled="false" selectionChange="onChangeFootFall" />
+								<Label text="Shop front space" id="labelShopfrntSpce"
+									textDirection="RTL" />
+								<ComboBox id="cmbshpfrntSpce" enabled="false" selectionChange="onChangeShopFront" />
+								<core:Title text="IT" id="titleIT" titleStyle="H1" />
+								<Label text="PCs/Laptop" id="labelPcLap" textDirection="RTL" />
+								<ComboBox id="cmbPcsLap" enabled="false" selectionChange="onChangePcsLap"/>
+								<Label text="Printers/Scanners" id="labelPrntScnner"
+									textDirection="RTL" />
+								<ComboBox id="cmbPrntrScnrs" enabled="false" selectionChange="onChangePrinerScanner"/>
+							</f:SimpleForm>
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								id="manPwrOthrInfraForm" editable="true" layout="ResponsiveGridLayout"
+								labelSpanL="6" labelSpanM="4" emptySpanL="1" emptySpanM="1"
+								columnsL="2" columnsM="2">
+								<core:Title text="Manpower" level="H4" />
+								<Label text="Full Time Employees" id="labelFllTmeEmp"
+									textDirection="RTL" />
+								<Input id="inptFullTmeEmploys" enabled="false"  maxLength="4" liveChange="onLiveChangeFullTimeEmps" valueLiveUpdate="true" change="onChangeFullTimeEmpLoyees" />
+								<Label text="Count of Back-end staff" id="labelBckEdStff"
+									textDirection="RTL" />
+								<ComboBox id="cmbCntBnkEndStf" enabled="false" selectionChange="onChangeCountBackStaff" />
+								<Label text="Total manpower strength" id="labelTotlMnPwrStrngt"
+									textDirection="RTL" />
+								<ComboBox id="cmbTotlMnpwrStrngt" enabled="false" selectionChange="onChangeTotalManpowerStren"/>
+								<core:Title />
+								<Text text="" />
+								<Label text="Count of FoS Staff" id="labelCntofFos"
+									textDirection="RTL" />
+								<ComboBox id="cmbCntofFsStf" enabled="false" selectionChange="onChangeFosStaff" />
+								<Label text="Supervisor Sales Staff" id="labelSuprvsorSalesStff"
+									textDirection="RTL" />
+								<ComboBox id="cmbSprvsonSlesStf" enabled="false" selectionChange="onChangeSuperviseSalestaff"  />
+								<Label text="Count off front-end staff" id="labelCuntofFrntEdStff"
+									textDirection="RTL" />
+								<ComboBox id="cmbCntofFrntEdStf" enabled="false" selectionChange="onChangeCountOfEndStaff"/>
+								<core:Title />
+								<Label text="Agent(DSS) Required" id="labelAgentDss"
+									textDirection="RTL" />
+								<ComboBox id="AgentCombodss" enabled="false" selectionChange="onChangeAgentDss"/>
+								<Label text="Agent(DSS) Name/Code" id="labelAgentdssnamecode"
+									textDirection="RTL"  />
+								<Input id="AgentDssNme" enabled="false"  maxLength="30" change="onChangeAgentDssNme"/>
+								<Label text="Location Ownership" id="Locationownerlabel"
+									textDirection="RTL"  />
+								<ComboBox id="AgentlocCombo" enabled="false" selectionChange="onChangeAgentlocCombo"/>
+							</f:SimpleForm>
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								 editable="true" layout="ResponsiveGridLayout"
+								labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+								columnsL="2" columnsM="2">
+								<core:Title text="Other Infrastructure"/>
+								<Panel expandable="false" expanded="true" headerText="Mode of Delivery">
+								<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+						<Table mode="MultiSelect" items="{jsonDataModeOfdelv>/results}" select="Modeofdelv"
+									id="tabidModeofDelv" >
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign="Left" demandPopin="true"
+										width="18%">
+									<!-- <Text text="Mode of Delivery" hAlign="Left" /> -->
+									</Column>
+								</columns>
+								<items>
+								<ColumnListItem>
+								<cells>
+								<!-- <Text text="{jsonDataModeOfdelv>AttrValue}"/> -->
+								<ObjectNumber
+									number="{jsonDataModeOfdelv>AttrValue}"
+									 />
+								</cells>
+								</ColumnListItem>
+								</items>
+							</Table>
+							</ScrollContainer>
+								</Panel>	
+								<Panel expandable="false" expanded="true" headerText="Connectivity">	
+								<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+                            <Table  items="{jsonDataConOff>/results}" id="TabidConOffice" select="Connectoffice"
+								 mode="MultiSelect" >
+								
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign="Left"
+										demandPopin="true" width="18%">
+										<!-- <Text text="Connectivity in office"/> -->
+									</Column>
+								</columns>
+								<items>
+								<ColumnListItem>
+								<cells>
+								<!-- <Text text="{jsonDataConOff>AttrValue}" /> -->
+								<ObjectNumber
+									number="{jsonDataConOff>AttrValue}"
+									 />
+								</cells>
+								</ColumnListItem>
+								</items>
+								</Table>
+								</ScrollContainer>
+								</Panel>	
+								<Label text="Mode of Delivery" id="labelModeofDelivery"
+									textDirection="RTL" visible="false"/>
+								<MultiComboBox id="multicmbMdeDlvry"
+									 selectionChange="Modeofdelv" visible="false"
+									width="17em" />
+								<Text width="35%" id="modeofdelv" visible="false" />
+								<Label text="Connectivity in office" id="labelConnectOffce" visible="false"
+									textDirection="RTL" />
+								<MultiComboBox id="multicmbConnevtOffice" visible="false"
+									 selectionChange="Connectoffice"
+									width="17em" />
+								<Text width="35%" id="Conoffice"  visible="false" />
+								<Label text="No.of Vehicles" id="labelNoofVehicles" 
+									textDirection="RTL" />
+								<Input id="inpNoofVehicles" enabled="false" width="17em"  valueLiveUpdate="true" liveChange="onLiveChangeNoOfVeh" 
+								maxLength="4" change="onChangeNoOfVeh" textDirection="RTL"/>
+							</f:SimpleForm>
+					</IconTabFilter>
+					
+					<IconTabFilter tooltip="Financial information" text="Financial information"
+						key="KeyFinancialInformation" id="IdFinancialInformation" visible="true">	
+						<!-- <Panel> -->
+							<!-- <headerToolbar>
+								<Toolbar>
+									<Title text="Financial information" />
+								</Toolbar>
+							</headerToolbar> -->
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+								labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+								columnsM="2">
+								<core:Title text="Payout details" level="H4" />
+								<Label text="Payout Media" id="labelPyutMedia"
+									textDirection="RTL" />
+								<ComboBox id="cmbPayoutMedia" enabled="false" selectionChange="onChaangePayoutDetails"/>
+								<core:Title text="Security Details" id="titleSecurtyDetls"
+									level="H4" />
+								<Label text="Security Type-Rs" id="labelScutyType"
+									textDirection="RTL" />
+								<ComboBox id="cmbSurtyType" enabled="false" selectionChange="onChangeSecurityTypeRs"/>
+
+								<Label text="Security instrument details" id="labelScutyInstrumntDetls"
+									textDirection="RTL" />
+								<Input id="inptScurtyInstrmntDtls" enabled="false"  maxLength="10" 
+								liveChange="onSecuInstrDet"  valueLiveUpdate="true" change="onChangeSecurityInstrDetls"/>
+								<Label text="Security Amount-Rs" textDirection="RTL" 	id="labelScutyAmtRs" />
+								<Input id="inptSecrtyAmnt" enabled="false" maxLength="13" 
+								liveChange="onLiveChangeSecurityAmtRs"  valueLiveUpdate="true"
+								change="onChangeSecurityAmtRs"/>
+								<Label text="Security Start date" id="labelScutyStrtDate"
+									textDirection="RTL" />
+								<DatePicker valueFormat="dd MMM YYYY" enabled="false" change="onChangeSecurityStartDate"
+									 id="DtpckScurtyStrtDte" />
+								<Label text="Security End date" id="labelScutyEndDate"
+									textDirection="RTL" />
+								<DatePicker valueFormat="dd MMM YYYY" enabled="false"
+									 id="DtpckScurtyEndDte"  change="onChangeSecurityEndDate"/>
+
+							<!-- </f:SimpleForm>
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+								labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+								columnsM="2"> -->
+								<core:Title text="Bank Details" id="titleBankDetails"
+									level="H4" />
+								<Label text="Account Holder Name" textDirection="RTL"
+									id="labelAccountHldrName" maxLength="40"/>
+								<Input id="inptAccountHldrName" enabled="false" maxLength="60" liveChange="onLiveChangeAccHolderName" valueLiveUpdate="true"  change="onChangeAccHolderName"/>
+								<Label text="Bank Account Number" textDirection="RTL"
+									id="labelAccountNo" />
+								<Input id="inputAccountNo" enabled="false"  maxLength="18" liveChange="onChangeAlphaNumeric" valueLiveUpdate="true"  change="onChangeBankAccNum"/>
+								<Label text="Bank Name" textDirection="RTL" id="labelBankName" />
+								<Input id="inptBankName" enabled="false" maxLength="60" liveChange="onLiveChangeBankName" valueLiveUpdate="true"  change="onChangeBankName"/>
+								<Label text="Branch Name" textDirection="RTL" id="labelBranchName" />
+								<Input id="inptBranchName" enabled="false" maxLength="40" change="onChangeBranchName"/>
+								<Label text="IFSC Code" textDirection="RTL" id="labelIfcCode" />
+								<Input id="inptIfcCode" enabled="false"  change="onChangeIFSCCode" maxLength="11" placeholder="Ex:SBIN0016897"/>
+								<core:Title text="Channel Finance" level="H4" />
+								<Label text="Channel Financed" textDirection="RTL"/>
+								<ComboBox id="cmbChannelFinanced" enabled="false" selectionChange="onChangeFinanced">
+								<core:Item key="00" text="00"/>
+								<core:Item key="01" text="01"/>
+								</ComboBox>
+								<Label text="Credit Limit" textDirection="RTL"/>
+								<Input id="inputCreditLimt" enabled="false" maxLength="14" liveChange="onLiveChangeCrdLmt" valueLiveUpdate="true" 
+								change="onChangeCreditLimit" />
+								<Label text="Sanction Date" textDirection="RTL"/>
+								<DatePicker valueFormat="dd MMM YYYY" enabled="false"
+									displayFormat="dd MMM YYYY" id="DtpSantionDate" change="onChangeSantionDate" />
+								<Label text="Expiry Date" textDirection="RTL"/>
+								<DatePicker valueFormat="dd MMM YYYY" enabled="false"
+									displayFormat="dd MMM YYYY" id="DtpExpiryDate" change="onChangeExpiryDate"  />
+								<Label text="Bank Name" textDirection="RTL"/>
+								<Input id="inpBankName" enabled="false" change="onInpChangeBankName" />
+								<Label text="Credit Period in Days" textDirection="RTL"/>
+								<Input id="inpCrdPerid" enabled="false" change="onChangeCreditPeriod" valueLiveUpdate="true" liveChange="onLiveChangeNoOfVeh" maxLength="4"/>
+							</f:SimpleForm>
+
+						<!-- </Panel> -->
+						
+						</IconTabFilter>
+						<IconTabFilter tooltip="Online Fulfillment" text="Online Fulfillment"
+						key="KeyOnlineFulment" id="iconfiltOnlineFull" >
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+							columnsM="2">
+						<Label text="Online fulfillment" textDirection="RTL" />
+								<!-- <Input id="inptOnlneFulfmnt" editable="false" /> -->
+								<ComboBox id="cmbOnlneFulmnt" enabled="false" width="50%" selectionChange="onSelectChangeOnlineFullFill"/>
+								<Label text="Delivery-boy name" textDirection="RTL" />
+								<Input id="inptDlverByNme" enabled="false" maxLength="60" width="50%" liveChange="onLiveChangeDelvBoyName"  valueLiveUpdate="true" change="onInpChangeDeliveryBoy"/>
+								<Label text="Qualification" textDirection="RTL" />
+								<!-- <Input id="inptDlvryQual" editable="false" /> -->
+								<ComboBox id="cmbDlvryQual" enabled="false" width="50%" selectionChange="onSelectChangeQualification"/>
+								</f:SimpleForm>
+						</IconTabFilter>
+					
+					<IconTabFilter tooltip="Turnover and Profit" text="Turnover and Profit"
+						key="KeyTurnProf" id="IdTurnProf" visible="true">	
+					<!-- <Panel id="turnOverPrftPanel"> -->
+							<!-- <headerToolbar>
+								<Toolbar>
+									<Title text="Turnover and Profit" />
+								</Toolbar>
+							</headerToolbar> -->
+
+							<f:SimpleForm minWidth="1024" maxContainerCols="2"
+								id="turnOverPrftFrom" editable="true" layout="ResponsiveGridLayout"
+								labelSpanL="6" labelSpanM="4" emptySpanL="1" emptySpanM="1"
+								columnsL="2" columnsM="2">
+								<core:Title text="" />
+								<Label text="Year" id="labelYear" textDirection="RTL" />
+								<!-- <ComboBox id="cmbSYear" enabled="true" /> -->
+								<Input id="inpSYear" enabled="false" change="onChangeTurnYear"/>
+								<Label text="Annual Turnover-cr" id="labelAnnualTurnOver"
+									textDirection="RTL" />
+								<Input id="inptAnnulTrnovr" enabled="false" change="changeAnualturnOver" 
+								maxLength="15" valueLiveUpdate="true" liveChange="liveChangeCurrency" />
+								<Label text="Annual Profit" id="labelAnnualPrft"
+									textDirection="RTL" />
+								<Input id="inputAnulPrft" enabled="false" change="changeAnnual1Profit"  valueLiveUpdate="true"
+								maxLength="15" liveChange="liveChangeCurrency"/>
+								<core:Title text="" />
+								<Label text="Year" id="labelYear2" textDirection="RTL" />
+								<Input id="inptYear2" enabled="false" change="onChangeTurnYear2"/>
+
+								<Label text="Annual Turnover-cr" id="lableAnnualTurnOver2"
+									textDirection="RTL" />
+								<Input id="inptAnnulTrnovr2" enabled="false" change="changeAnnualYearProfit"  valueLiveUpdate="true"
+								maxLength="15" liveChange="liveChangeCurrency"/>
+								<Label text="Annual Profit" id="labelAnnualProfit"
+									textDirection="RTL" />
+								<Input id="inputAnulPrft2" enabled="false" change="changeAnnual2Profit"  valueLiveUpdate="true"
+								maxLength="15" liveChange="liveChangeCurrency" />
+
+								<core:Title text="" />
+								<Label text="Contract Start Date" id="labelContractStartDate"
+									textDirection="RTL" />
+								<DatePicker id="datePickrStartContract" enabled="false" change="ChangeContracStartDate"
+									valueFormat="yyyy-MM-dd" />
+									<core:Title text="" />
+								<Label text="Contract End Date" id="labelContractEndDate"
+									textDirection="RTL" />
+								<DatePicker id="datePickrEndContract" enabled="false"
+									valueFormat="yyyy-MM-dd" change="ChangeContractEndDate" />
+
+							</f:SimpleForm>
+					<!-- 	</Panel> -->
+					
+					</IconTabFilter>
+					
+					
+					<IconTabFilter  text="List of Business" tooltip="Existing Business"
+						key="KeyListOfBus" id="IdListOfBus" visible="true">	
+					<core:Fragment fragmentName="com.ril.PRMS.view.BusinessInformation"
+							type="XML" />
+					</IconTabFilter>
+					
+						<IconTabFilter  text="Sales Details" tooltip="Sales Details"
+						key="KeySalesDtls" id="IdSalesDtls" visible="true">	
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+							columnsM="2">
+							<!-- <core:Title text="Sales Details-Devices" /> -->
+
+							<ScrollContainer height="180px" width="100%" 
+								vertical="true" focusable="true">
+								<Table growing="true" growingThreshold="12" id="salesTab" width="100%"
+									items="{salesval>/}" delete="onDelSales" growingScrollToLoad="true"
+									class="sapUiSizeCompact">
+									<headerToolbar>
+
+										<Toolbar><!--  visible="false" id="tlbrSalesTab"> -->
+										<Title text="Connectivity" id="IdTxtDev" titleStyle="H3"/>
+										<!-- <Title text="Devices" titleStyle="H3"/> -->
+											<ToolbarSpacer />
+											<Button type="Emphasized" icon="sap-icon://add" press="onAddSalesTab"
+												id="btSalestab" visible="false" />
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center">
+											<Text text="Product Type" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center">
+											<Text text="Brands Serviced" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center">
+											<Text text="Monthly Sales volume" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+											<ComboBox items="{ProdTypeMod>/}" selectedKey="{salesval>PrdTyp}" selectionChange="onchngPrdType" enabled="false"
+												valueState="{parts:[{path:'salesval>PrdTyp_X'},{path:'salesval>zPrdTypTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+													<core:Item key="{ProdTypeMod>AttrCode}" text="{ProdTypeMod>AttrValue}" />
+												</ComboBox>
+												<ComboBox items="{BrndServiceeMod>/}" selectedKey="{salesval>BrndSrvcd}" selectionChange="onchngBrndType" enabled="false"
+												valueState="{parts:[{path:'salesval>BrndSrvcd_X'},{path:'salesval>zBrndSrvcdTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+													<core:Item key="{BrndServiceeMod>AttrCode}" text="{BrndServiceeMod>AttrValue}" />
+												</ComboBox>
+												<ComboBox items="{MnthSaleType>/}" selectedKey="{salesval>MntlySlesVol}" selectionChange="onchngSaleType" enabled="false"
+												valueState="{parts:[{path:'salesval>MntlySlesVol_X'},{path:'salesval>zMntlySlesTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}" >
+													<core:Item key="{MnthSaleType>AttrCode}" text="{MnthSaleType>AttrValue}" />
+												</ComboBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+							</f:SimpleForm>
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+							columnsM="2" >
+							
+							<!-- <core:Title text="" /> -->
+							<!-- <core:Title text="Sales details-Connectivity"/> -->
+							<ScrollContainer height="180px" width="100%"
+								vertical="true" focusable="true">
+								<Table growing="true" growingThreshold="12" width="100%"
+									id="deviceTab" delete="onDelSalesConnectivity"
+									items="{salesDevval>/}" growingScrollToLoad="true" class="sapUiSizeCompact">
+									<headerToolbar>
+										<Toolbar> <!-- visible="false" id="tlbrSalesTabConnectivity"> -->
+										<Title text="Device" id="IdTxtCon" titleStyle="H3"/>
+										
+											<ToolbarSpacer />
+											<Button type="Emphasized" icon="sap-icon://add"
+												press="onAddDeviceTab" id="btSalestabConnectivity"
+												visible="false" />
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center">
+											<Text text="Product Type" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center">
+											<Text text="Brands Service" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+											hAlign="Center">
+											<Text text="Monthly Sales volume" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+											<ComboBox items="{ProdTypeDevMod>/}" selectedKey="{salesDevval>PrdTyp}"  selectionChange="onChngeDevPrd" enabled="false"
+												valueState="{parts:[{path:'salesDevval>PrdTyp_X'},{path:'salesDevval>zPrdDevTypTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+													<core:Item key="{ProdTypeDevMod>AttrCode}" text="{ProdTypeDevMod>AttrValue}" />
+												</ComboBox>
+												<ComboBox items="{BrndServiceDevMod>/}" selectedKey="{salesDevval>BrndSrvcd}" selectionChange="onChngeDevBrd" enabled="false"
+												 valueState="{parts:[{path:'salesDevval>BrndSrvcd_X'},{path:'salesDevval>zBrndSrvcdTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+													<core:Item key="{BrndServiceDevMod>AttrCode}" text="{BrndServiceDevMod>AttrValue}" />
+												</ComboBox>
+												<ComboBox items="{MnthSaleDevType>/}" selectedKey="{salesDevval>MntlySlesVol}" selectionChange="onChngeDevMnth" enabled="false"
+												valueState="{parts:[{path:'salesDevval>MntlySlesVol_X'},{path:'salesDevval>zMntlySlesTask'}],formatter:'com.ril.PRMS.util.Formatter.setColor'}">
+													<core:Item key="{MnthSaleDevType>AttrCode}" text="{MnthSaleDevType>AttrValue}" />
+												</ComboBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+					</f:SimpleForm>
+					
+					</IconTabFilter>
+					
+					
+					<IconTabFilter  text="Service Details" tooltip="Service Details"
+						key="KeyServiceDetls" id="IdSalesDetls" visible="true">	
+					
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+							columnsM="2">
+							
+							<!-- <core:Title text="Service details" /> -->
+							<Label text="Service Area" textDirection="RTL" />
+							<ComboBox id="cmbSrvcAra" enabled="false" width="50%" selectionChange="onChangeServiceArea"/>
+							<Label text="Area For Service" textDirection="RTL" />
+							<ComboBox id="cmbAreaServc" enabled="false" width="50%" selectionChange="onChangeAreaForService"/>
+							<Label text="Service Engineer" tooltip="Shop Boy/Service Engineer/Technician"
+								textDirection="RTL" />
+							<ComboBox id="cmbShpServ" enabled="false" width="50%" selectionChange="onChangeServiceEngineer"/>
+							<Label text="Name" textDirection="RTL" />
+							<Input id="inptServcName" enabled="false" liveChange="onLiveChangeDelvBoyName" width="50%" valueLiveUpdate="true" change="onChangeName"/>
+							<Label text="Qualification" textDirection="RTL" />
+							<ComboBox id="cmbQualfcton" enabled="false" width="50%" selectionChange="onChangequalification"/>
+						</f:SimpleForm>
+					</IconTabFilter>
+					
+					
+					<IconTabFilter  text="Jio Money Dealer" tooltip="Jio Money Dealer"
+						key="KeyJioMonDeal" id="IdJioMonDeal" visible="true">	
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+							labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+							columnsM="2">
+							<core:Title/>
+							<!-- <core:Title text="JIO Money Dealer" level="H4" /> -->
+							<Label text="Commission Medium" textDirection="RTL" />
+							<ComboBox id="cmbJioMnyCmson" enabled="false" selectionChange="onChangeCommissionMedium" />
+							<Label text="Settlement Frequency" textDirection="RTL" />
+							<ComboBox id="cmbJioMnystlmntFreq" enabled="false" selectionChange="onChangeSettleFreq"  />
+							<Label text="Enable TIP" textDirection="RTL" />
+							<ComboBox id="cmbEnbleTIP" enabled="false"  selectionChange="onChangeEnableTip" />
+							<Label text="Business Channel" textDirection="RTL" />
+							<ComboBox id="cmbBusnsChnl" enabled="false" selectionChange="onChangeBusiChannel" />
+							<Label text="Commission Mobile Number" textDirection="RTL" />
+							<l:HorizontalLayout >
+							<Input id="inpStaticCode3" type="Text" value="+91" enabled="false" width="40px"/>
+						<Input id="inptJioMnyCmsonMbleNmbr" enabled="false"  maxLength="10" 
+						liveChange="onLiveChangeMno" valueLiveUpdate="true" change="onChangeMobNo" width="118px"/>
+						</l:HorizontalLayout>   
+							<!-- <Input id="inptJioMnyCmsonMbleNmbr" editable="false" /> -->
+							<Label text="Daily Transaction Count" textDirection="RTL" />
+							<ComboBox id="cmbDlyTrncCnt" enabled="false" selectionChange="onChangeDailyTransCnt"  />
+							<core:Title/>
+							<Label text="Daily Revenue in INR" textDirection="RTL" />
+							<ComboBox id="cmbDlyRvnuINR" enabled="false" selectionChange="onChangeDailyRevenueInr" />
+							<Label text="Payment Acceptance Type" textDirection="RTL" />
+							<ComboBox id="cmbPymntAccptTyp" enabled="false" selectionChange="onChangePaymentAccept"  />
+							<Label text="Return Policy" textDirection="RTL" />
+							<ComboBox id="cmbRtrnPolcy" enabled="false" selectionChange="onChangeReturnPloicy"  />
+							<Label text="Settlement Details" textDirection="RTL" />
+							<ComboBox id="cmbStleDtls" enabled="false" selectionChange="onChangeSettlementDet" />
+							<Label text="LOB Category" textDirection="RTL" />
+							<ComboBox id="cmbLnsBusnssId" enabled="false" selectionChange="onChangeLineOfBusiness"  />
+							<Label text="LOB Description" textDirection="RTL" />
+							<ComboBox id="cmbLnsBusnssDesc" enabled="false" selectionChange="onChangeLineOfBusinessDesc"  />
+							<Label text="Years of Business" textDirection="RTL" />
+							<ComboBox id="cmbYrsBusns" enabled="false" selectionChange="onChangeYearsOfBusiness"  />
+						</f:SimpleForm>
+					
+					</IconTabFilter>
+					
+					
+					</items>
+					</IconTabBar>				
+</core:FragmentDefinition>

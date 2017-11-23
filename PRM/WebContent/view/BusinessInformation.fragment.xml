@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+									<Toolbar>
+									<Title text="List of Business" titleStyle="H3"/>
+										<ToolbarSpacer />
+										<Button type="Emphasized" visible="false" icon="sap-icon://add"
+											press="onBusTypeAdd" enabled="true" id="busTypeBtAdd" />
+									</Toolbar>
+								<ScrollContainer height="180px" width="100%"
+							vertical="true" focusable="true">
+							<Table growing="true" growingThreshold="12" id="busTypeTab"
+								delete="onDeleteBusTypeTab"  growingScrollToLoad="true"  width="1430px"
+								class="sapUiSizeCompact" >
+								 <columns>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Business type" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Distributorship for company" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Years of operation" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Promoter funding" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="ROI" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Credit received from company" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Annual Turnover (cr)" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Growth over previous year" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Outletsubtype" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="OutletCount" />
+										</Column>
+										</columns>
+								 </Table>
+								 </ScrollContainer>
+</core:FragmentDefinition>

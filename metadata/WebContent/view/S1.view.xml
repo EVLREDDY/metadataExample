@@ -1,0 +1,23 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="metadata.view.S1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="oData Service Info">
+		<content>
+			<Panel id="pageId" expandable="false" expanded="false" width="auto" class="sapUiResponsiveMargin" >
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<Input id="idService" placeholder="Enter Service " width="20%" visible="true"
+							valueLiveUpdate="true" />
+						<Button text="search" type="Reject" press="onSearch" visible="true" />
+						<ToolbarSpacer/>
+						<Text id="serviceId" text="" />
+						<Button id="reload" icon="sap-icon://refresh" width="5%"/>
+						<ToolbarSpacer/>
+						<Input id="idEntities" visible="false" placeholder="select EntitySet " width="20%"  showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+							valueLiveUpdate="true" />
+					</Toolbar>
+				</headerToolbar>
+			</Panel>
+		</content>
+	</Page>
+</core:View>

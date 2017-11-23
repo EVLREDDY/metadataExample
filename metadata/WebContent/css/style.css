@@ -1,0 +1,9 @@
+.sapMMsgPopoverItem>.sapMLIBContent>.sapMSLITitleDiv>.sapMSLITitleOnly{
+       white-space: initial;
+}
+.abc>div{
+	  padding: 0rem !important;
+    box-sizing: border-box;
+    overflow: auto;
+    white-space: normal;
+}

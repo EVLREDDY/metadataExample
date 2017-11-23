@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+ <ActionSheet showCancelButton="true"
+		placement="Bottom">
+			<buttons>
+			<Button text="My Activites"  press="onMyactivites"/>
+			<Button text="Team Activites" press="onTeamActivites"/>
+	
+		</buttons>
+</ActionSheet>
+</core:FragmentDefinition>

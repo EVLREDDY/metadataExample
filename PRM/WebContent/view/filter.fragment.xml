@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<Dialog title="" contentWidth="20%"  showHeader="false"
+		xmlns:f="sap.ui.layout.form" class="sapUiSizeCompact">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Search"/>
+				</contentMiddle>
+				<contentRight>
+					<Button  icon="sap-icon://sys-cancel" press="onPressCancel"></Button>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+	<f:SimpleForm minWidth="1024" maxContainerCols="1"
+			editable="true" layout="ResponsiveGridLayout" labelSpanL="6"
+			labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="2">
+			<Label text="External ID" />
+			<Input id="idOrderId" placeholder="External ID" liveChange="onChangeExtid" />
+			<Label text="Company Name" />
+			<Input id="idactivityName" placeholder="Company Name" liveChange="onChangeExtid" />
+			<Label text="Date Range" />
+			<DateRangeSelection id="idCreationDateRange" select="onChangeDate"
+				change="handleChange" />
+			<Label text="Approval Status" />
+			<ComboBox id="idApprovalstatus" placeholder="Approve Status"
+				selectionChange="onChangeCombo" items="{/}">
+				<core:Item key="{AttrCode}" text="{AttrValue}" />
+				<!-- <core:Item text="Reject"/> <core:Item text="Withdraw"/> -->
+			</ComboBox>
+		</f:SimpleForm>
+				
+				</content>
+				
+				<beginButton>
+				<Button text="Search" icon="sap-icon://search" press="onFilterSearch" type="Accept"/>
+			</beginButton>
+			<endButton>
+			<Button text="Reset" icon="sap-icon://sys-cancel" press="oncancel" type="Reject"/>
+			</endButton>
+				</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,960 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="MOBILE_EMR" xml:lang="en" sap:schema-version="0000"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Doctor" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="DoctorId" Type="Edm.String" sap:label="User ID"/>
+                <Property Name="FirstName" Type="Edm.String" sap:label="First Name"/>
+                <Property Name="LastName" Type="Edm.String" sap:label="Last Name"/>
+                <Property Name="MiddleName" Type="Edm.String" sap:label="Middle Name"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="NuanceUserId" Type="Edm.String" sap:label="ID"/>
+                <NavigationProperty Name="Wards" Relationship="MOBILE_EMR.DoctorToWards" FromRole="FromRole_DoctorToWards" ToRole="ToRole_DoctorToWards"/>
+            </EntityType>
+            <EntityType Name="Patient" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Birthdate" Type="Edm.String" MaxLength="10" sap:label="Birthdate"/>
+                <Property Name="ClinicalDescription" Type="Edm.String" sap:label="Clinical Description"/>
+                <Property Name="CurrentLocation" Type="Edm.String" sap:label="Current Location"/>
+                <Property Name="Gender" Type="Edm.String" sap:label="Gender"/>
+                <Property Name="HasPhoto" Type="Edm.Boolean" sap:label="Photo Indicator"/>
+                <Property Name="WardId" Type="Edm.String" sap:label="Ward ID"/>
+                <Property Name="Attention" Type="Edm.Boolean" sap:label="Attention"/>
+                <Property Name="PrivateInsured" Type="Edm.Boolean" sap:label="Private Insured"/>
+                <Property Name="FreetextLabel" Type="Edm.String" sap:label="Freetext Label"/>
+                <Property Name="NameLabel" Type="Edm.String" sap:label="Name Label"/>
+                <Property Name="OpenPayments" Type="Edm.Boolean" sap:label="Open Payments"/>
+                <Property Name="NewDocuments" Type="Edm.Boolean" sap:label="New Documents"/>
+                <Property Name="Grouping" Type="Edm.String" sap:label="Grouping"/>
+                <Property Name="FavoriteColorCode" Type="Edm.String" sap:label="Favorite Color Code"/>
+                <Property Name="DrgActualValue" Type="Edm.Int32" sap:label="DRG Value"/>
+                <Property Name="DrgLowerTrimmValue" Type="Edm.Int32" sap:label="DRG Value"/>
+                <Property Name="DrgMiddleTrimmValue" Type="Edm.Int32" sap:label="DRG Value"/>
+                <Property Name="DrgHigherTrimmValue" Type="Edm.Int32" sap:label="DRG Value"/>
+                <Property Name="DrgCode" Type="Edm.String" sap:label="DRG Code"/>
+                <Property Name="FirstLine" Type="Edm.String" sap:label="Label"/>
+                <Property Name="SecondLine" Type="Edm.String" sap:label="Label"/>
+                <Property Name="ThirdLine" Type="Edm.String" sap:label="Label"/>
+                <Property Name="ExternalPatientId" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Religion" Type="Edm.String" sap:label="Religion"/>
+                <Property Name="CustomField1" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="CustomField2" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="CustomField3" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="CustomField4" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="PhotoMimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="HasTodos" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="FilterKeys" Type="Edm.String" sap:label="String"/>
+                <Property Name="StatusColorCode" Type="Edm.String" sap:label="String"/>
+                <Property Name="StatusColorCodeShortLabel" Type="Edm.String" sap:label="Label"/>
+                <Property Name="StatusColorCodeLongLabel" Type="Edm.String" sap:label="Label"/>
+                <Property Name="HideAllDetailData" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="IsAddProgressNoteAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <Property Name="IsAddTodoAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <Property Name="IsAddImageGroupAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <Property Name="IsAddMemoAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <Property Name="DateOfAdmission" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="Institution" Type="Edm.String" sap:label="String"/>
+                <NavigationProperty Name="Allergies" Relationship="MOBILE_EMR.PatientToAllergies" FromRole="FromRole_PatientToAllergies" ToRole="ToRole_PatientToAllergies"/>
+                <NavigationProperty Name="LabResults" Relationship="MOBILE_EMR.PatientToLabResults" FromRole="FromRole_PatientToLabResults" ToRole="ToRole_PatientToLabResults"/>
+                <NavigationProperty Name="TimeIntervals" Relationship="MOBILE_EMR.PatientToTimeIntervals" FromRole="FromRole_PatientToTimeIntervals" ToRole="ToRole_PatientToTimeIntervals"/>
+                <NavigationProperty Name="ImageGroups" Relationship="MOBILE_EMR.PatientToImageGroups" FromRole="FromRole_PatientToImageGroups" ToRole="ToRole_PatientToImageGroups"/>
+                <NavigationProperty Name="Diagnoses" Relationship="MOBILE_EMR.PatientToDiagnosis" FromRole="FromRole_PatientToDiagnosis" ToRole="ToRole_PatientToDiagnosis"/>
+                <NavigationProperty Name="Problems" Relationship="MOBILE_EMR.PatientToProblems" FromRole="FromRole_PatientToProblems" ToRole="ToRole_PatientToProblems"/>
+                <NavigationProperty Name="Procedures" Relationship="MOBILE_EMR.PatientToProcedures" FromRole="FromRole_PatientToProcedures" ToRole="ToRole_PatientToProcedures"/>
+                <NavigationProperty Name="Documents" Relationship="MOBILE_EMR.PatientToDocument" FromRole="FromRole_PatientToDocument" ToRole="ToRole_PatientToDocument"/>
+                <NavigationProperty Name="VitalSigns" Relationship="MOBILE_EMR.PatientToVitalSigns" FromRole="FromRole_PatientToVitalSigns" ToRole="ToRole_PatientToVitalSigns"/>
+                <NavigationProperty Name="PatientInfos" Relationship="MOBILE_EMR.PatientToPatientInfos" FromRole="FromRole_PatientToPatientInfos" ToRole="ToRole_PatientToPatientInfos"/>
+                <NavigationProperty Name="WebFacets" Relationship="MOBILE_EMR.PatientToWebFacets" FromRole="FromRole_PatientToWebFacets" ToRole="ToRole_PatientToWebFacets"/>
+                <NavigationProperty Name="LabResultMeasureTypes" Relationship="MOBILE_EMR.PatientToLabResultMeasureTypes" FromRole="FromRole_PatientToLabResultMeasureTypes" ToRole="ToRole_PatientToLabResultMeasureTypes"/>
+                <NavigationProperty Name="ProgressNotes" Relationship="MOBILE_EMR.PatientToProgressNotes" FromRole="FromRole_PatientToProgressNotes" ToRole="ToRole_PatientToProgressNotes"/>
+                <NavigationProperty Name="MedicalRequests" Relationship="MOBILE_EMR.PatientToMedicalRequests" FromRole="FromRole_PatientToMedicalRequests" ToRole="ToRole_PatientToMedicalRequests"/>
+                <NavigationProperty Name="Employers" Relationship="MOBILE_EMR.PatientToEmployers" FromRole="FromRole_PatientToEmployers" ToRole="ToRole_PatientToEmployers"/>
+                <NavigationProperty Name="InsuranceData" Relationship="MOBILE_EMR.PatientToInsuranceData" FromRole="FromRole_PatientToInsuranceData" ToRole="ToRole_PatientToInsuranceData"/>
+                <NavigationProperty Name="NextKins" Relationship="MOBILE_EMR.PatientToNextKins" FromRole="FromRole_PatientToNextKins" ToRole="ToRole_PatientToNextKins"/>
+                <NavigationProperty Name="Physicians" Relationship="MOBILE_EMR.PatientToPhysicians" FromRole="FromRole_PatientToPhysicians" ToRole="ToRole_PatientToPhysicians"/>
+                <NavigationProperty Name="Contacts" Relationship="MOBILE_EMR.PatientToContacts" FromRole="FromRole_PatientToContacts" ToRole="ToRole_PatientToContacts"/>
+                <NavigationProperty Name="ImagePrefetches" Relationship="MOBILE_EMR.PatientImagePrefetches" FromRole="FromRole_PatientImagePrefetches" ToRole="ToRole_PatientImagePrefetches"/>
+                <NavigationProperty Name="Todos" Relationship="MOBILE_EMR.PatientToTodos" FromRole="FromRole_PatientToTodos" ToRole="ToRole_PatientToTodos"/>
+                <NavigationProperty Name="Memos" Relationship="MOBILE_EMR.PatientToMemos" FromRole="FromRole_PatientToMemos" ToRole="ToRole_PatientToMemos"/>
+                <NavigationProperty Name="Risks" Relationship="MOBILE_EMR.PatientToRisks" FromRole="FromRole_PatientToRisks" ToRole="ToRole_PatientToRisks"/>
+                <NavigationProperty Name="LabResultMeasurementInfos" Relationship="MOBILE_EMR.PatientToLabResultMeasurementInfos" FromRole="FromRole_PatientToLabResultMeasurementInfos" ToRole="ToRole_PatientToLabResultMeasurementInfos"/>
+            </EntityType>
+            <EntityType Name="Ward" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+            </EntityType>
+            <EntityType Name="Allergy" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Allergen" Type="Edm.String" sap:label="Allergen"/>
+                <Property Name="ContextInfo" Type="Edm.String" sap:label="Context Information"/>
+                <Property Name="IndicatingPersonName" Type="Edm.String" sap:label="Name Label"/>
+                <Property Name="IndicationResult" Type="Edm.String" sap:label="Indication Result"/>
+                <Property Name="IndicationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Indication Date"/>
+                <Property Name="ValidityStatus" Type="Edm.String" sap:label="Validity Status"/>
+            </EntityType>
+            <EntityType Name="Setting" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="SettingKey" Type="Edm.String" MaxLength="100" sap:label="Configuration Key"/>
+                <Property Name="ReadOnly" Type="Edm.Boolean" sap:label="Read Only"/>
+                <Property Name="SettingValue" Type="Edm.String" sap:label="Configuation Value"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="Application" Type="Edm.String" MaxLength="100" sap:label="Application Name"/>
+                <Property Name="Etag" Type="Edm.String" ConcurrencyMode="Fixed" sap:label="Etag"/>
+            </EntityType>
+            <EntityType Name="LabResult" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="ResultValue" Type="Edm.String" sap:label="Result Value"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="MeasureType" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Abnormal" Type="Edm.String" sap:label="Abnormal Indicator"/>
+                <Property Name="NormalRange" Type="Edm.String" sap:label="Label"/>
+                <Property Name="ResultComment" Type="Edm.String" sap:label="Label"/>
+            </EntityType>
+            <EntityType Name="Facet" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Label" Type="Edm.String" sap:label="Name Label"/>
+                <Property Name="Order" Type="Edm.Int32" sap:label="Ordering"/>
+                <Property Name="PreviewOrder" Type="Edm.Int32" sap:label="Ordering"/>
+                <Property Name="FacetType" Type="Edm.String" MaxLength="10" sap:label="Facet Type"/>
+                <Property Name="HasIcon" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="FacetDisabled" Type="Edm.Boolean" sap:label="Facet Disabled"/>
+                <Property Name="PreviewDisabled" Type="Edm.Boolean" sap:label="Preview Disabled"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="Application" Type="Edm.String" MaxLength="100" sap:label="Application Name"/>
+                <Property Name="Etag" Type="Edm.String" ConcurrencyMode="Fixed" sap:label="Etag"/>
+            </EntityType>
+            <EntityType Name="WebFacet" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Url" Type="Edm.String" sap:label="URL"/>
+                <Property Name="ShowNavigationBar" Type="Edm.Boolean" sap:label="Show Navigation Bar"/>
+                <Property Name="ShowScrollbar" Type="Edm.Boolean" sap:label="Is Bouncing"/>
+                <Property Name="HasIcon" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+            </EntityType>
+            <EntityType Name="TimeInterval" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Label" Type="Edm.String" sap:label="Label"/>
+                <Property Name="SecondLabel" Type="Edm.String" sap:label="Label"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date"/>
+                <Property Name="CaseId" Type="Edm.String" sap:label="Clinical Case"/>
+                <Property Name="CustomField1" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="CustomField2" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="CustomField3" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="CustomField4" Type="Edm.String" sap:label="Custom Field"/>
+                <Property Name="IsDefault" Type="Edm.Boolean" sap:label="Flag"/>
+            </EntityType>
+            <EntityType Name="ImageGroup" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Type" Type="Edm.String" sap:label="Image Group Type"/>
+                <Property Name="CreatorName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="CreatorPhone" Type="Edm.String" sap:label="Phone Number" sap:updatable="false"/>
+                <Property Name="DiagnosticTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Diagnostic Time" sap:updatable="false"/>
+                <Property Name="NumberOfImages" Type="Edm.Int64" sap:label="Count of images"/>
+                <Property Name="ServiceDepartment" Type="Edm.String" sap:label="Department Name"/>
+                <Property Name="ShortText" Type="Edm.String" sap:label="Short Text"/>
+                <Property Name="Status" Type="Edm.String" sap:label="Image Group Status"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="NumberOfSeries" Type="Edm.Int64" sap:label="Count of series"/>
+                <Property Name="ExternalUrlScheme" Type="Edm.String" sap:label="URL"/>
+                <Property Name="IsAlbum" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="IsUpdateAllowed" Type="Edm.Boolean" sap:label="Update Allowed"/>
+                <Property Name="IsDeleteAllowed" Type="Edm.Boolean" sap:label="Delete allowed"/>
+                <Property Name="IsAddImageAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <Property Name="AccessionNumber" Type="Edm.String" sap:label="ID"/>
+                <NavigationProperty Name="Images" Relationship="MOBILE_EMR.ImageGroupToImages" FromRole="FromRole_ImageGroupToImages" ToRole="ToRole_ImageGroupToImages"/>
+                <NavigationProperty Name="ImageSeries" Relationship="MOBILE_EMR.ImageGroupToImageSeries" FromRole="FromRole_ImageGroupToImageSeries" ToRole="ToRole_ImageGroupToImageSeries"/>
+            </EntityType>
+            <EntityType Name="Image" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="IsKeyImage" Type="Edm.Boolean" sap:label="Key Indicator"/>
+                <Property Name="Number" Type="Edm.Int32" sap:label="Ordering"/>
+                <Property Name="Rows" Type="Edm.Int32" sap:label="Rows"/>
+                <Property Name="Columns" Type="Edm.Int32" sap:label="Columns"/>
+                <Property Name="Series" Type="Edm.String" sap:label="ID"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="IsDeleteAllowed" Type="Edm.Boolean" sap:label="Delete allowed"/>
+                <Property Name="NumberOfFrames" Type="Edm.Int32" sap:label="Number of Frames"/>
+                <Property Name="ImageLabel" Type="Edm.String" sap:label="Label"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <NavigationProperty Name="ImageThumbnail" Relationship="MOBILE_EMR.ImageToImageThumbnail" FromRole="FromRole_ImageToImageThumbnail" ToRole="ToRole_ImageToImageThumbnail"/>
+                <NavigationProperty Name="OriginalImageGroup" Relationship="MOBILE_EMR.ImageToOriginalImageGroup" FromRole="FromRole_ImageToOriginalImageGroup" ToRole="ToRole_ImageToOriginalImageGroup"/>
+            </EntityType>
+            <EntityType Name="ImageThumbnail" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+            </EntityType>
+            <EntityType Name="ImageSeries" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Description" Type="Edm.String" sap:label="Label"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="SeriesNumber" Type="Edm.Int32" sap:label="Ordering"/>
+                <Property Name="NumberOfImages" Type="Edm.Int32" sap:label="Count of images"/>
+                <Property Name="Type" Type="Edm.String" sap:label="Modality"/>
+            </EntityType>
+            <EntityType Name="LabMeasureType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Group" Type="Edm.String" sap:label="Lab meas. type group"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+            </EntityType>
+            <EntityType Name="Diagnosis" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="DiagnosisType" Type="Edm.String" sap:label="Diagnosis Type"/>
+                <Property Name="DiagnosisClass" Type="Edm.String" sap:label="Diagnosis Class"/>
+                <Property Name="Code" Type="Edm.String" sap:label="Diagnosis code"/>
+                <Property Name="DiagnosisDescription" Type="Edm.String" sap:label="Description"/>
+                <Property Name="ObservationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="PrimaryDiagnosis" Type="Edm.Boolean" sap:label="Primary Indicator"/>
+            </EntityType>
+            <EntityType Name="Problem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="ProblemDescription" Type="Edm.String" sap:label="Description"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="ObservationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+            </EntityType>
+            <EntityType Name="Document" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Type" Type="Edm.String" sap:label="Document Type"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="ShortText" Type="Edm.String" sap:label="Short Text"/>
+                <Property Name="Text" Type="Edm.String" sap:label="Text"/>
+                <Property Name="ServiceDepartment" Type="Edm.String" sap:label="Department Name"/>
+                <Property Name="DocumentCreator" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Status" Type="Edm.String" sap:label="Document Status"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+            </EntityType>
+            <EntityType Name="Procedure" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="ConductionTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="ProcedureDescription" Type="Edm.String" sap:label="Description"/>
+                <Property Name="Code" Type="Edm.String" sap:label="Code"/>
+                <Property Name="PrimaryProcedure" Type="Edm.Boolean" sap:label="Flag"/>
+            </EntityType>
+            <EntityType Name="VitalSignType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Label" Type="Edm.String" sap:label="Label"/>
+                <Property Name="LowerRange" Type="Edm.String" sap:label="Vital Sign Value"/>
+                <Property Name="NormalRange" Type="Edm.String" sap:label="Vital Sign Value"/>
+                <Property Name="UpperRange" Type="Edm.String" sap:label="Vital Sign Value"/>
+                <Property Name="UnitOfMeasure" Type="Edm.String" sap:label="Unit of Measure"/>
+                <Property Name="UnitOfMeasureName" Type="Edm.String" sap:label="Unit of Measure Name"/>
+            </EntityType>
+            <EntityType Name="VitalSign" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Value" Type="Edm.String" sap:label="Vital Sign Value"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="Type" Type="Edm.String" sap:label="Vital Sign Type"/>
+            </EntityType>
+            <EntityType Name="PatientInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Label" Type="Edm.String" sap:label="Label"/>
+                <Property Name="Text" Type="Edm.String" sap:label="Text"/>
+                <Property Name="HasBinaryDocument" Type="Edm.Boolean" sap:label="Flag"/>
+            </EntityType>
+            <EntityType Name="ProgressNote" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="ObservationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="NoteDescription" Type="Edm.String" sap:label="Description"/>
+                <Property Name="CreatorName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="CreatorProfession" Type="Edm.String" sap:label="Profession"/>
+                <Property Name="IsShiftChangeRelevant" Type="Edm.Boolean" sap:label="Shift Change Relev."/>
+                <Property Name="CreatorRole" Type="Edm.String" sap:label="Role"/>
+                <Property Name="CreatorId" Type="Edm.String" sap:label="User ID"/>
+                <Property Name="CategoryId" Type="Edm.String" sap:label="ID"/>
+                <Property Name="HasAttachment" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="IsUpdateAllowed" Type="Edm.Boolean" sap:label="Update Allowed"/>
+                <Property Name="IsDeleteAllowed" Type="Edm.Boolean" sap:label="Delete allowed"/>
+                <Property Name="IsAddAttachmentAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <NavigationProperty Name="Attachments" Relationship="MOBILE_EMR.ProgressNoteToAttachments" FromRole="FromRole_ProgressNoteToAttachments" ToRole="ToRole_ProgressNoteToAttachments"/>
+                <NavigationProperty Name="AttachmentUploads" Relationship="MOBILE_EMR.ProgressNoteToAttachmentUploads" FromRole="FromRole_ProgressNoteToAttachmentUploads" ToRole="ToRole_ProgressNoteToAttachmentUploads"/>
+            </EntityType>
+            <EntityType Name="MedicalRequest" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Status" Type="Edm.String" sap:label="Status"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="OrderId" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Department" Type="Edm.String" sap:label="Department Name"/>
+                <Property Name="DepartmentPhone" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="CreationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="Type" Type="Edm.String" sap:label="Type"/>
+            </EntityType>
+            <EntityType Name="Employer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="JobTitle" Type="Edm.String" sap:label="Title"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Address" Type="Edm.String" sap:label="Address"/>
+            </EntityType>
+            <EntityType Name="InsuranceData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="InsuredID" Type="Edm.String" sap:label="ID"/>
+                <Property Name="InsurerID" Type="Edm.String" sap:label="ID"/>
+                <Property Name="InsurerName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="AdditionalInsurer" Type="Edm.String" sap:label="Add. Insurer"/>
+            </EntityType>
+            <EntityType Name="NextKins" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Email" Type="Edm.String" sap:label="Email"/>
+                <Property Name="Phone" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="RelationshipType" Type="Edm.String" sap:label="Type"/>
+                <Property Name="Address" Type="Edm.String" sap:label="Address"/>
+            </EntityType>
+            <EntityType Name="Physician" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="PhysicianName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Speciality" Type="Edm.String" sap:label="Speciality"/>
+                <Property Name="Phone1" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="Phone2" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="RoleID" Type="Edm.String" sap:label="ID"/>
+                <Property Name="RoleName" Type="Edm.String" sap:label="Role"/>
+            </EntityType>
+            <EntityType Name="Contact" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="EmailAddress" Type="Edm.String" sap:label="Email"/>
+                <Property Name="Phone1" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="Phone2" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="Address" Type="Edm.String" sap:label="Address"/>
+                <Property Name="FaxNumber" Type="Edm.String" sap:label="Phone Number"/>
+                <Property Name="Country" Type="Edm.String" sap:label="Country"/>
+            </EntityType>
+            <EntityType Name="PhotoUpload" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="PatientId" Type="Edm.String" sap:label="ID"/>
+                <Property Name="PhotoData" Type="Edm.Binary" sap:label="Binary"/>
+                <Property Name="PhotoMimeType" Type="Edm.String" sap:label="Mime Type"/>
+            </EntityType>
+            <EntityType Name="ImagePrefetch" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="client_event" Type="Edm.String" sap:label="ID"/>
+                <Property Name="ImageGroupId" Type="Edm.String" sap:label="ID"/>
+                <Property Name="CountOfSeries" Type="Edm.Int32" sap:label="Prefetch Count"/>
+                <Property Name="CountOfImagesPerSeries" Type="Edm.Int32" sap:label="Prefetch Count"/>
+                <Property Name="CountOfThumbnailsPerSeries" Type="Edm.Int32" sap:label="Prefetch Count"/>
+                <Property Name="AllKeyImages" Type="Edm.Boolean" sap:label="Flag"/>
+            </EntityType>
+            <EntityType Name="SupportFile" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="64" sap:label="Support File Type"/>
+                <Property Name="AppComponentName" Type="Edm.String" MaxLength="100" sap:label="Application Name"/>
+                <Property Name="UploadSessionId" Type="Edm.String" MaxLength="32" sap:label="Session ID"/>
+                <Property Name="CreationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="UserComment" Type="Edm.String" sap:label="Text"/>
+                <Property Name="DeviceId" Type="Edm.String" MaxLength="128" sap:label="Device ID"/>
+                <Property Name="BinaryContent" Type="Edm.Binary" sap:label="Binary"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+            </EntityType>
+            <EntityType Name="Todo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="CategoryId" Type="Edm.String" sap:label="ID"/>
+                <Property Name="CategoryLabel" Type="Edm.String" sap:label="Label"/>
+                <Property Name="Text" Type="Edm.String" sap:label="Text"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="Status" Type="Edm.String" sap:label="ID"/>
+                <Property Name="CompletedOn" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+                <Property Name="CreatorId" Type="Edm.String" sap:label="User ID"/>
+                <Property Name="CreatorName" Type="Edm.String" sap:label="Label"/>
+                <Property Name="CreatorRole" Type="Edm.String" sap:label="Role"/>
+                <Property Name="ProcessorId" Type="Edm.String" sap:label="User ID"/>
+                <Property Name="ProcessorName" Type="Edm.String" sap:label="Label"/>
+                <Property Name="ProcessorRole" Type="Edm.String" sap:label="Role"/>
+                <Property Name="CompleterId" Type="Edm.String" sap:label="User ID"/>
+                <Property Name="CompleterName" Type="Edm.String" sap:label="Label"/>
+                <Property Name="CompleterRole" Type="Edm.String" sap:label="Role"/>
+                <Property Name="HasAttachment" Type="Edm.Boolean" sap:label="Flag"/>
+                <Property Name="IsUpdateAllowed" Type="Edm.Boolean" sap:label="Update Allowed"/>
+                <Property Name="IsDeleteAllowed" Type="Edm.Boolean" sap:label="Delete allowed"/>
+                <Property Name="IsAddAttachmentAllowed" Type="Edm.Boolean" sap:label="Add item allowed"/>
+                <NavigationProperty Name="Attachments" Relationship="MOBILE_EMR.TodoToAttachments" FromRole="FromRole_TodoToAttachments" ToRole="ToRole_TodoToAttachments"/>
+                <NavigationProperty Name="AttachmentUploads" Relationship="MOBILE_EMR.TodoToAttachmentUploads" FromRole="FromRole_TodoToAttachmentUploads" ToRole="ToRole_TodoToAttachmentUploads"/>
+            </EntityType>
+            <EntityType Name="Memo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Text" Type="Edm.String" sap:label="Text"/>
+                <Property Name="IsUpdateAllowed" Type="Edm.Boolean" sap:label="Update Allowed"/>
+                <Property Name="IsDeleteAllowed" Type="Edm.Boolean" sap:label="Delete allowed"/>
+            </EntityType>
+            <EntityType Name="Attachment" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="Data" Type="Edm.Binary" sap:label="Binary"/>
+            </EntityType>
+            <EntityType Name="Risk" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="IndicationTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Indication Date"/>
+            </EntityType>
+            <EntityType Name="TodoCategory" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+            </EntityType>
+            <EntityType Name="ProgressNoteCategory" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+            </EntityType>
+            <EntityType Name="PatientList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SearchName"/>
+                    <PropertyRef Name="SearchParameter"/>
+                </Key>
+                <Property Name="SearchName" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="SearchParameter" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="SubName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Application" Type="Edm.String" sap:label="ID"/>
+                <NavigationProperty Name="Filters" Relationship="MOBILE_EMR.PatientListToPatientListFilters" FromRole="FromRole_PatientListToPatientListFilters" ToRole="ToRole_PatientListToPatientListFilters"/>
+                <NavigationProperty Name="Patients" Relationship="MOBILE_EMR.PatientListToPatients" FromRole="FromRole_PatientListToPatients" ToRole="ToRole_PatientListToPatients"/>
+            </EntityType>
+            <EntityType Name="PatientListFilter" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="ShortName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="LongName" Type="Edm.String" sap:label="Name"/>
+                <Property Name="PatientFilterKey" Type="Edm.Int32" sap:label="Identifier"/>
+            </EntityType>
+            <EntityType Name="TextTemplate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="EntityType" Type="Edm.String" sap:label="ID"/>
+                <Property Name="ShortKey" Type="Edm.String" sap:label="Name"/>
+                <Property Name="Text" Type="Edm.String" sap:label="Text"/>
+            </EntityType>
+            <EntityType Name="FavoriteColorCodeType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Code" Type="Edm.String" sap:label="Favorite Color Code"/>
+                <Property Name="Label" Type="Edm.String" sap:label="Favorite Color Label"/>
+                <Property Name="IsUpdateAllowed" Type="Edm.Boolean" sap:label="Update Allowed"/>
+            </EntityType>
+            <EntityType Name="SizedImage" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Width"/>
+                    <PropertyRef Name="Height"/>
+                    <PropertyRef Name="Quality"/>
+                    <PropertyRef Name="Frame"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Width" Type="Edm.Int32" Nullable="false" sap:label="Columns"/>
+                <Property Name="Height" Type="Edm.Int32" Nullable="false" sap:label="Rows"/>
+                <Property Name="Quality" Type="Edm.Int32" Nullable="false" sap:label="Image Quality"/>
+                <Property Name="Frame" Type="Edm.Int32" Nullable="false" sap:label="Image Frame"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+            </EntityType>
+            <EntityType Name="LabResultMeasurementInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="TimeInterval" Type="Edm.String" sap:label="ID"/>
+                <Property Name="Title" Type="Edm.String" sap:label="Title"/>
+                <Property Name="Text" Type="Edm.String" sap:label="Text"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Precision="0" sap:label="Timestamp"/>
+            </EntityType>
+            <EntityType Name="AttachmentUpload" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" sap:label="ID"/>
+                <Property Name="Name" Type="Edm.String" sap:label="Name"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:label="Mime Type"/>
+                <Property Name="Data" Type="Edm.Binary" sap:label="Binary"/>
+            </EntityType>
+            <Association Name="ImageToImageThumbnail" sap:content-version="1">
+                <End Type="MOBILE_EMR.Image" Multiplicity="1" Role="FromRole_ImageToImageThumbnail"/>
+                <End Type="MOBILE_EMR.ImageThumbnail" Multiplicity="0..1" Role="ToRole_ImageToImageThumbnail"/>
+            </Association>
+            <Association Name="ImageToOriginalImageGroup" sap:content-version="1">
+                <End Type="MOBILE_EMR.Image" Multiplicity="1" Role="FromRole_ImageToOriginalImageGroup"/>
+                <End Type="MOBILE_EMR.ImageGroup" Multiplicity="0..1" Role="ToRole_ImageToOriginalImageGroup"/>
+            </Association>
+            <Association Name="PatientToAllergies" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToAllergies"/>
+                <End Type="MOBILE_EMR.Allergy" Multiplicity="*" Role="ToRole_PatientToAllergies"/>
+            </Association>
+            <Association Name="PatientToLabResults" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToLabResults"/>
+                <End Type="MOBILE_EMR.LabResult" Multiplicity="*" Role="ToRole_PatientToLabResults"/>
+            </Association>
+            <Association Name="PatientToTimeIntervals" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToTimeIntervals"/>
+                <End Type="MOBILE_EMR.TimeInterval" Multiplicity="*" Role="ToRole_PatientToTimeIntervals"/>
+            </Association>
+            <Association Name="PatientToImageGroups" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToImageGroups"/>
+                <End Type="MOBILE_EMR.ImageGroup" Multiplicity="*" Role="ToRole_PatientToImageGroups"/>
+            </Association>
+            <Association Name="PatientToDiagnosis" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToDiagnosis"/>
+                <End Type="MOBILE_EMR.Diagnosis" Multiplicity="*" Role="ToRole_PatientToDiagnosis"/>
+            </Association>
+            <Association Name="PatientToProblems" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToProblems"/>
+                <End Type="MOBILE_EMR.Problem" Multiplicity="*" Role="ToRole_PatientToProblems"/>
+            </Association>
+            <Association Name="PatientToProcedures" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToProcedures"/>
+                <End Type="MOBILE_EMR.Procedure" Multiplicity="*" Role="ToRole_PatientToProcedures"/>
+            </Association>
+            <Association Name="PatientToDocument" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToDocument"/>
+                <End Type="MOBILE_EMR.Document" Multiplicity="*" Role="ToRole_PatientToDocument"/>
+            </Association>
+            <Association Name="PatientToVitalSigns" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToVitalSigns"/>
+                <End Type="MOBILE_EMR.VitalSign" Multiplicity="*" Role="ToRole_PatientToVitalSigns"/>
+            </Association>
+            <Association Name="PatientToPatientInfos" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToPatientInfos"/>
+                <End Type="MOBILE_EMR.PatientInfo" Multiplicity="*" Role="ToRole_PatientToPatientInfos"/>
+            </Association>
+            <Association Name="PatientToWebFacets" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToWebFacets"/>
+                <End Type="MOBILE_EMR.WebFacet" Multiplicity="*" Role="ToRole_PatientToWebFacets"/>
+            </Association>
+            <Association Name="PatientToLabResultMeasureTypes" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToLabResultMeasureTypes"/>
+                <End Type="MOBILE_EMR.LabMeasureType" Multiplicity="*" Role="ToRole_PatientToLabResultMeasureTypes"/>
+            </Association>
+            <Association Name="PatientToProgressNotes" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToProgressNotes"/>
+                <End Type="MOBILE_EMR.ProgressNote" Multiplicity="*" Role="ToRole_PatientToProgressNotes"/>
+            </Association>
+            <Association Name="PatientToMedicalRequests" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToMedicalRequests"/>
+                <End Type="MOBILE_EMR.MedicalRequest" Multiplicity="*" Role="ToRole_PatientToMedicalRequests"/>
+            </Association>
+            <Association Name="PatientToEmployers" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToEmployers"/>
+                <End Type="MOBILE_EMR.Employer" Multiplicity="*" Role="ToRole_PatientToEmployers"/>
+            </Association>
+            <Association Name="PatientToInsuranceData" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToInsuranceData"/>
+                <End Type="MOBILE_EMR.InsuranceData" Multiplicity="*" Role="ToRole_PatientToInsuranceData"/>
+            </Association>
+            <Association Name="PatientToNextKins" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToNextKins"/>
+                <End Type="MOBILE_EMR.NextKins" Multiplicity="*" Role="ToRole_PatientToNextKins"/>
+            </Association>
+            <Association Name="PatientToPhysicians" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToPhysicians"/>
+                <End Type="MOBILE_EMR.Physician" Multiplicity="*" Role="ToRole_PatientToPhysicians"/>
+            </Association>
+            <Association Name="PatientToContacts" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToContacts"/>
+                <End Type="MOBILE_EMR.Contact" Multiplicity="*" Role="ToRole_PatientToContacts"/>
+            </Association>
+            <Association Name="PatientImagePrefetches" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientImagePrefetches"/>
+                <End Type="MOBILE_EMR.ImagePrefetch" Multiplicity="*" Role="ToRole_PatientImagePrefetches"/>
+            </Association>
+            <Association Name="PatientToTodos" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToTodos"/>
+                <End Type="MOBILE_EMR.Todo" Multiplicity="*" Role="ToRole_PatientToTodos"/>
+            </Association>
+            <Association Name="PatientToMemos" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToMemos"/>
+                <End Type="MOBILE_EMR.Memo" Multiplicity="*" Role="ToRole_PatientToMemos"/>
+            </Association>
+            <Association Name="PatientToRisks" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToRisks"/>
+                <End Type="MOBILE_EMR.Risk" Multiplicity="*" Role="ToRole_PatientToRisks"/>
+            </Association>
+            <Association Name="PatientToLabResultMeasurementInfos" sap:content-version="1">
+                <End Type="MOBILE_EMR.Patient" Multiplicity="1" Role="FromRole_PatientToLabResultMeasurementInfos"/>
+                <End Type="MOBILE_EMR.LabResultMeasurementInfo" Multiplicity="*" Role="ToRole_PatientToLabResultMeasurementInfos"/>
+            </Association>
+            <Association Name="ImageGroupToImages" sap:content-version="1">
+                <End Type="MOBILE_EMR.ImageGroup" Multiplicity="1" Role="FromRole_ImageGroupToImages"/>
+                <End Type="MOBILE_EMR.Image" Multiplicity="*" Role="ToRole_ImageGroupToImages"/>
+            </Association>
+            <Association Name="ImageGroupToImageSeries" sap:content-version="1">
+                <End Type="MOBILE_EMR.ImageGroup" Multiplicity="1" Role="FromRole_ImageGroupToImageSeries"/>
+                <End Type="MOBILE_EMR.ImageSeries" Multiplicity="*" Role="ToRole_ImageGroupToImageSeries"/>
+            </Association>
+            <Association Name="TodoToAttachments" sap:content-version="1">
+                <End Type="MOBILE_EMR.Todo" Multiplicity="1" Role="FromRole_TodoToAttachments"/>
+                <End Type="MOBILE_EMR.Attachment" Multiplicity="*" Role="ToRole_TodoToAttachments"/>
+            </Association>
+            <Association Name="TodoToAttachmentUploads" sap:content-version="1">
+                <End Type="MOBILE_EMR.Todo" Multiplicity="1" Role="FromRole_TodoToAttachmentUploads"/>
+                <End Type="MOBILE_EMR.AttachmentUpload" Multiplicity="*" Role="ToRole_TodoToAttachmentUploads"/>
+            </Association>
+            <Association Name="ProgressNoteToAttachments" sap:content-version="1">
+                <End Type="MOBILE_EMR.ProgressNote" Multiplicity="1" Role="FromRole_ProgressNoteToAttachments"/>
+                <End Type="MOBILE_EMR.Attachment" Multiplicity="*" Role="ToRole_ProgressNoteToAttachments"/>
+            </Association>
+            <Association Name="ProgressNoteToAttachmentUploads" sap:content-version="1">
+                <End Type="MOBILE_EMR.ProgressNote" Multiplicity="1" Role="FromRole_ProgressNoteToAttachmentUploads"/>
+                <End Type="MOBILE_EMR.AttachmentUpload" Multiplicity="*" Role="ToRole_ProgressNoteToAttachmentUploads"/>
+            </Association>
+            <Association Name="DoctorToWards" sap:content-version="1">
+                <End Type="MOBILE_EMR.Doctor" Multiplicity="*" Role="FromRole_DoctorToWards"/>
+                <End Type="MOBILE_EMR.Ward" Multiplicity="*" Role="ToRole_DoctorToWards"/>
+            </Association>
+            <Association Name="PatientListToPatientListFilters" sap:content-version="1">
+                <End Type="MOBILE_EMR.PatientList" Multiplicity="1" Role="FromRole_PatientListToPatientListFilters"/>
+                <End Type="MOBILE_EMR.PatientListFilter" Multiplicity="*" Role="ToRole_PatientListToPatientListFilters"/>
+            </Association>
+            <Association Name="PatientListToPatients" sap:content-version="1">
+                <End Type="MOBILE_EMR.PatientList" Multiplicity="1" Role="FromRole_PatientListToPatients"/>
+                <End Type="MOBILE_EMR.Patient" Multiplicity="*" Role="ToRole_PatientListToPatients"/>
+            </Association>
+            <EntityContainer Name="MOBILE_EMR_Entities" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="PatientCollection" EntityType="MOBILE_EMR.Patient" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="WardCollection" EntityType="MOBILE_EMR.Ward" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="AllergyCollection" EntityType="MOBILE_EMR.Allergy" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SettingCollection" EntityType="MOBILE_EMR.Setting" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="LabResultCollection" EntityType="MOBILE_EMR.LabResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="FacetCollection" EntityType="MOBILE_EMR.Facet" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="WebFacetCollection" EntityType="MOBILE_EMR.WebFacet" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TimeIntervalCollection" EntityType="MOBILE_EMR.TimeInterval" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ImageGroupCollection" EntityType="MOBILE_EMR.ImageGroup" sap:content-version="1"/>
+                <EntitySet Name="ImageCollection" EntityType="MOBILE_EMR.Image" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ImageThumbnailCollection" EntityType="MOBILE_EMR.ImageThumbnail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ImageSeriesCollection" EntityType="MOBILE_EMR.ImageSeries" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="LabMeasureTypeCollection" EntityType="MOBILE_EMR.LabMeasureType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DiagnosisCollection" EntityType="MOBILE_EMR.Diagnosis" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProblemCollection" EntityType="MOBILE_EMR.Problem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DocumentCollection" EntityType="MOBILE_EMR.Document" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProcedureCollection" EntityType="MOBILE_EMR.Procedure" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="VitalSignTypeCollection" EntityType="MOBILE_EMR.VitalSignType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="VitalSignCollection" EntityType="MOBILE_EMR.VitalSign" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PatientInfoCollection" EntityType="MOBILE_EMR.PatientInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProgressNoteCollection" EntityType="MOBILE_EMR.ProgressNote" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MedicalRequestCollection" EntityType="MOBILE_EMR.MedicalRequest" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="EmployerCollection" EntityType="MOBILE_EMR.Employer" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="InsuranceDataCollection" EntityType="MOBILE_EMR.InsuranceData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="NextKinsCollection" EntityType="MOBILE_EMR.NextKins" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PhysicianCollection" EntityType="MOBILE_EMR.Physician" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ContactCollection" EntityType="MOBILE_EMR.Contact" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PhotoUploadCollection" EntityType="MOBILE_EMR.PhotoUpload" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ImagePrefetchCollection" EntityType="MOBILE_EMR.ImagePrefetch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SupportFileCollection" EntityType="MOBILE_EMR.SupportFile" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TodoCollection" EntityType="MOBILE_EMR.Todo" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="MemoCollection" EntityType="MOBILE_EMR.Memo" sap:updatable="false" sap:content-version="1"/>
+                <EntitySet Name="AttachmentCollection" EntityType="MOBILE_EMR.Attachment" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="RiskCollection" EntityType="MOBILE_EMR.Risk" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TodoCategoryCollection" EntityType="MOBILE_EMR.TodoCategory" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProgressNoteCategoryCollection" EntityType="MOBILE_EMR.ProgressNoteCategory" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PatientListCollection" EntityType="MOBILE_EMR.PatientList" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="PatientListFilterCollection" EntityType="MOBILE_EMR.PatientListFilter" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TextTemplateCollection" EntityType="MOBILE_EMR.TextTemplate" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="FavoriteColorCodeTypeCollection" EntityType="MOBILE_EMR.FavoriteColorCodeType" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SizedImageCollection" EntityType="MOBILE_EMR.SizedImage" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="LabResultMeasurementInfoCollection" EntityType="MOBILE_EMR.LabResultMeasurementInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="AttachmentUploadCollection" EntityType="MOBILE_EMR.AttachmentUpload" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DoctorCollection" EntityType="MOBILE_EMR.Doctor" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="PatientToTimeIntervals_AssocSet" Association="MOBILE_EMR.PatientToTimeIntervals" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToTimeIntervals"/>
+                    <End EntitySet="TimeIntervalCollection" Role="ToRole_PatientToTimeIntervals"/>
+                </AssociationSet>
+                <AssociationSet Name="DoctorToWards_AssocSet" Association="MOBILE_EMR.DoctorToWards" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DoctorCollection" Role="FromRole_DoctorToWards"/>
+                    <End EntitySet="WardCollection" Role="ToRole_DoctorToWards"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToInsuranceData_AssocSet" Association="MOBILE_EMR.PatientToInsuranceData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToInsuranceData"/>
+                    <End EntitySet="InsuranceDataCollection" Role="ToRole_PatientToInsuranceData"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToDiagnosis_AssocSet" Association="MOBILE_EMR.PatientToDiagnosis" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToDiagnosis"/>
+                    <End EntitySet="DiagnosisCollection" Role="ToRole_PatientToDiagnosis"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToProgressNotes_AssocSet" Association="MOBILE_EMR.PatientToProgressNotes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToProgressNotes"/>
+                    <End EntitySet="ProgressNoteCollection" Role="ToRole_PatientToProgressNotes"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientListToPatients_AssocSet" Association="MOBILE_EMR.PatientListToPatients" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientListCollection" Role="FromRole_PatientListToPatients"/>
+                    <End EntitySet="PatientCollection" Role="ToRole_PatientListToPatients"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToWebFacets_AssocSet" Association="MOBILE_EMR.PatientToWebFacets" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToWebFacets"/>
+                    <End EntitySet="WebFacetCollection" Role="ToRole_PatientToWebFacets"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToImageGroups_AssocSet" Association="MOBILE_EMR.PatientToImageGroups" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToImageGroups"/>
+                    <End EntitySet="ImageGroupCollection" Role="ToRole_PatientToImageGroups"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientImagePrefetches_AssocSet" Association="MOBILE_EMR.PatientImagePrefetches" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientImagePrefetches"/>
+                    <End EntitySet="ImagePrefetchCollection" Role="ToRole_PatientImagePrefetches"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToDocument_AssocSet" Association="MOBILE_EMR.PatientToDocument" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToDocument"/>
+                    <End EntitySet="DocumentCollection" Role="ToRole_PatientToDocument"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToAllergies_AssocSet" Association="MOBILE_EMR.PatientToAllergies" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToAllergies"/>
+                    <End EntitySet="AllergyCollection" Role="ToRole_PatientToAllergies"/>
+                </AssociationSet>
+                <AssociationSet Name="TodoToAttachmentUploads_AssocSet" Association="MOBILE_EMR.TodoToAttachmentUploads" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="TodoCollection" Role="FromRole_TodoToAttachmentUploads"/>
+                    <End EntitySet="AttachmentUploadCollection" Role="ToRole_TodoToAttachmentUploads"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToLabResultMeasurementInfos_Assoc" Association="MOBILE_EMR.PatientToLabResultMeasurementInfos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToLabResultMeasurementInfos"/>
+                    <End EntitySet="LabResultMeasurementInfoCollection" Role="ToRole_PatientToLabResultMeasurementInfos"/>
+                </AssociationSet>
+                <AssociationSet Name="ImageGroupToImages_AssocSet" Association="MOBILE_EMR.ImageGroupToImages" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ImageGroupCollection" Role="FromRole_ImageGroupToImages"/>
+                    <End EntitySet="ImageCollection" Role="ToRole_ImageGroupToImages"/>
+                </AssociationSet>
+                <AssociationSet Name="TodoToAttachments_AssocSet" Association="MOBILE_EMR.TodoToAttachments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="TodoCollection" Role="FromRole_TodoToAttachments"/>
+                    <End EntitySet="AttachmentCollection" Role="ToRole_TodoToAttachments"/>
+                </AssociationSet>
+                <AssociationSet Name="ImageToOriginalImageGroup_AssocSet" Association="MOBILE_EMR.ImageToOriginalImageGroup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ImageCollection" Role="FromRole_ImageToOriginalImageGroup"/>
+                    <End EntitySet="ImageGroupCollection" Role="ToRole_ImageToOriginalImageGroup"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToMemos_AssocSet" Association="MOBILE_EMR.PatientToMemos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToMemos"/>
+                    <End EntitySet="MemoCollection" Role="ToRole_PatientToMemos"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToTodos_AssocSet" Association="MOBILE_EMR.PatientToTodos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToTodos"/>
+                    <End EntitySet="TodoCollection" Role="ToRole_PatientToTodos"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToLabResults_AssocSet" Association="MOBILE_EMR.PatientToLabResults" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToLabResults"/>
+                    <End EntitySet="LabResultCollection" Role="ToRole_PatientToLabResults"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToContacts_AssocSet" Association="MOBILE_EMR.PatientToContacts" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToContacts"/>
+                    <End EntitySet="ContactCollection" Role="ToRole_PatientToContacts"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToVitalSigns_AssocSet" Association="MOBILE_EMR.PatientToVitalSigns" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToVitalSigns"/>
+                    <End EntitySet="VitalSignCollection" Role="ToRole_PatientToVitalSigns"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToLabResultMeasureTypes_AssocSet" Association="MOBILE_EMR.PatientToLabResultMeasureTypes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToLabResultMeasureTypes"/>
+                    <End EntitySet="LabMeasureTypeCollection" Role="ToRole_PatientToLabResultMeasureTypes"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToPatientInfos_AssocSet" Association="MOBILE_EMR.PatientToPatientInfos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToPatientInfos"/>
+                    <End EntitySet="PatientInfoCollection" Role="ToRole_PatientToPatientInfos"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToRisks_AssocSet" Association="MOBILE_EMR.PatientToRisks" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToRisks"/>
+                    <End EntitySet="RiskCollection" Role="ToRole_PatientToRisks"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToPhysicians_AssocSet" Association="MOBILE_EMR.PatientToPhysicians" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToPhysicians"/>
+                    <End EntitySet="PhysicianCollection" Role="ToRole_PatientToPhysicians"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToNextKins_AssocSet" Association="MOBILE_EMR.PatientToNextKins" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToNextKins"/>
+                    <End EntitySet="NextKinsCollection" Role="ToRole_PatientToNextKins"/>
+                </AssociationSet>
+                <AssociationSet Name="ImageGroupToImageSeries_AssocSet" Association="MOBILE_EMR.ImageGroupToImageSeries" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ImageGroupCollection" Role="FromRole_ImageGroupToImageSeries"/>
+                    <End EntitySet="ImageSeriesCollection" Role="ToRole_ImageGroupToImageSeries"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToProblems_AssocSet" Association="MOBILE_EMR.PatientToProblems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToProblems"/>
+                    <End EntitySet="ProblemCollection" Role="ToRole_PatientToProblems"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToMedicalRequests_AssocSet" Association="MOBILE_EMR.PatientToMedicalRequests" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToMedicalRequests"/>
+                    <End EntitySet="MedicalRequestCollection" Role="ToRole_PatientToMedicalRequests"/>
+                </AssociationSet>
+                <AssociationSet Name="ImageToImageThumbnail_AssocSet" Association="MOBILE_EMR.ImageToImageThumbnail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ImageCollection" Role="FromRole_ImageToImageThumbnail"/>
+                    <End EntitySet="ImageThumbnailCollection" Role="ToRole_ImageToImageThumbnail"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientListToPatientListFilters_AssocSet" Association="MOBILE_EMR.PatientListToPatientListFilters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientListCollection" Role="FromRole_PatientListToPatientListFilters"/>
+                    <End EntitySet="PatientListFilterCollection" Role="ToRole_PatientListToPatientListFilters"/>
+                </AssociationSet>
+                <AssociationSet Name="ProgressNoteToAttachmentUploads_AssocSet" Association="MOBILE_EMR.ProgressNoteToAttachmentUploads" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProgressNoteCollection" Role="FromRole_ProgressNoteToAttachmentUploads"/>
+                    <End EntitySet="AttachmentUploadCollection" Role="ToRole_ProgressNoteToAttachmentUploads"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToProcedures_AssocSet" Association="MOBILE_EMR.PatientToProcedures" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToProcedures"/>
+                    <End EntitySet="ProcedureCollection" Role="ToRole_PatientToProcedures"/>
+                </AssociationSet>
+                <AssociationSet Name="ProgressNoteToAttachments_AssocSet" Association="MOBILE_EMR.ProgressNoteToAttachments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProgressNoteCollection" Role="FromRole_ProgressNoteToAttachments"/>
+                    <End EntitySet="AttachmentCollection" Role="ToRole_ProgressNoteToAttachments"/>
+                </AssociationSet>
+                <AssociationSet Name="PatientToEmployers_AssocSet" Association="MOBILE_EMR.PatientToEmployers" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PatientCollection" Role="FromRole_PatientToEmployers"/>
+                    <End EntitySet="EmployerCollection" Role="ToRole_PatientToEmployers"/>
+                </AssociationSet>
+                <FunctionImport Name="PatientSearch" ReturnType="Collection(MOBILE_EMR.Patient)" EntitySet="PatientCollection" m:HttpMethod="GET">
+                    <Parameter Name="searchName" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="param1" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="UpdateFavoriteColorCode" ReturnType="MOBILE_EMR.Patient" EntitySet="PatientCollection" m:HttpMethod="POST">
+                    <Parameter Name="PatientId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="FavoriteColorCode" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="GlobalPatientSearch" ReturnType="Collection(MOBILE_EMR.Patient)" EntitySet="PatientCollection" m:HttpMethod="GET">
+                    <Parameter Name="searchTerm" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="AddImageToImageGroup" ReturnType="MOBILE_EMR.ImageGroup" EntitySet="ImageGroupCollection" m:HttpMethod="POST">
+                    <Parameter Name="ImageGroupId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ImageId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="SeriesId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ImageNumber" Type="Edm.Int32" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="RemoveImageFromImageGroup" ReturnType="MOBILE_EMR.ImageGroup" EntitySet="ImageGroupCollection" m:HttpMethod="POST">
+                    <Parameter Name="ImageGroupId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ImageId" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="http://DEVNWNGD.ril.com:8000/sap/opu/odata/MEMR/MOBILE_EMR/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+                <atom:link rel="latest-version" href="http://DEVNWNGD.ril.com:8000/sap/opu/odata/MEMR/MOBILE_EMR/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx> -->

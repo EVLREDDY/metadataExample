@@ -1,0 +1,45 @@
+<mvc:View controllerName="com.ril.PRMS.view.Master" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:footerbar="sap.ushell.ui.footerbar">
+	<Page id="masterPage" title="{i18n>masterTitle}">
+	<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label id="headerText" />
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://menu" id="butnActvty" type="Default" press="onActivity" visible="true"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<subHeader>
+			<Toolbar>
+			<ToggleButton icon="sap-icon://multi-select" press="multiselect" visible=""/>
+				 <SearchField 
+                        id="searchField" 
+                        liveChange="onSearch" 
+                        width="100%" 
+                        placeholder="{i18n>masterSearchPlaceholder}" 
+                        tooltip="{i18n>masterSearchTooltip}">
+                    </SearchField>
+                <Button icon="sap-icon://refresh" id="refresh" type="Default" press="onRefresh" visible="true"/>
+				<Button icon="sap-icon://filter" type="Default"  press="advancedSearch" />
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List 
+                id="list" 
+                select="onSelect"
+                mode="{device>/listMode}" 
+                noDataText="{i18n>masterListNoDataText}" >
+			</List>
+			<Button id="butnMastrCunt" type="Default" design="bold"  press="onmasterLoad" width="100%" visible="true"/>
+		</content>
+		<footer id="masterFooter">
+			<Bar>
+				<contentRight>
+					<Button text="Action" id="butnAction" type="Accept" press="onAction" visible="false"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
