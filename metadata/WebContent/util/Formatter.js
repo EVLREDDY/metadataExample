@@ -2,7 +2,6 @@ jQuery.sap.declare("metadata.util.Formatter");
 jQuery.sap.require("sap.ca.ui.model.format.DateFormat");
 jQuery.sap.require("sap.ca.ui.model.format.NumberFormat");
 metadata.util.Formatter = {
-
 	CRM_SERVICE : "http://services.odata.org/V3/Northwind/Northwind.svc/", /*ZFIORI_CORPORATE_MANAGEMENT_SRV ZCORPORATE_MASTER_AGREEMENT_SRV*/
 	proxy : ".." + window.location.pathname + "proxy",
 	serviceUrl : "/sap/opu/odata/sap/@ServiceUrl/",
